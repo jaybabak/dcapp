@@ -6,12 +6,8 @@ describe("HomeStore", () => {
 		const store = new HomeStore();
 		store.fetchItems(data);
 		const expectedArray = [
-			"React Native Starter Kit",
-			"React Navigation",
-			"NativeBase Easy Grid",
-			"NativeBase",
-			"CodePush",
-			"Redux",
+			"Sign up as consumer",
+			"Sign up as business"	,
 		];
 		var actualJSON = JSON.stringify(store.items);
 		var expectedJSON = JSON.stringify(expectedArray);

@@ -30,6 +30,9 @@ class SignUp extends React.Component<Props, State> {
 	// }
 	//
 
+	//LEFT OFF HERE TRYING TO CREATE THE TWO SEPERATE COMPONENTS FOR SIGN UP AND BUSINESS
+	//https://reactjs.org/docs/conditional-rendering.html
+
 	render() {
 		const param = this.props.navigation.state.params;
 		return (
