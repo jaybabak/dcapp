@@ -1,11 +1,4 @@
 
-## React Native Seed v1.0.0
-
-### A [React Native](https://facebook.github.io/react-native/docs/getting-started.html) Starter Kit with [NativeBase](https://nativebase.io/) + [React Navigation](https://reactnavigation.org/) + [MobX](https://github.com/mobxjs/mobx) Apps (iOS & Android)
-
-*Brought to you by [GeekyAnts](https://geekyants.com/)*
-
-
 ## Get Started
 
 ### 1. System Requirements
@@ -19,10 +12,7 @@
 
 On the command prompt run the following commands
 
-```sh
-$ git clone https://github.com/GeekyAnts/react-native-boilerplate-mobx-flow.git
-
-$ cd react-native-boilerplate-mobx-flow/
+$ cd react-native-project
 
 $ npm install
   or
@@ -46,4 +36,3 @@ $ npm install
 		*	Run `npm run android` in your terminal
 
 
-For apps with more advance designs, please visit **[NativeBase Market](https://market.nativebase.io/)**.

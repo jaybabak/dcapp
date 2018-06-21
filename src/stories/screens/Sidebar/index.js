@@ -9,7 +9,7 @@ const routes = [
 	},
 	{
 		route: "BlankPage",
-		caption: "Blank Page",
+		caption: "Who We Are",
 	},
 	{
 		route: "Login",

@@ -4,6 +4,7 @@ import { StackNavigator, DrawerNavigator } from "react-navigation";
 import { Root } from "native-base";
 import Login from "./container/LoginContainer";
 import Home from "./container/HomeContainer";
+import SignUpContainer from "./container/SignUpContainer";
 import BlankPage from "./container/BlankPageContainer";
 import Sidebar from "./container/SidebarContainer";
 
@@ -21,6 +22,7 @@ const App = StackNavigator(
 	{
 		Login: { screen: Login },
 		BlankPage: { screen: BlankPage },
+		SignUp: { screen: SignUpContainer },
 		Drawer: { screen: Drawer },
 	},
 	{
