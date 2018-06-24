@@ -3,32 +3,32 @@ import { Container, Header, Title, Content, Text, Button, Icon, Left, Right, Bod
 
 import styles from "./styles";
 import Counter from "./counter";
+import ConsumerGreeting from "./consumer";
 
 export interface Props {
 	navigation: any;
 }
+
+
+
 export interface State {}
 class SignUp extends React.Component<Props, State> {
 
+// const param = this.props.navigation.state.params;
+
+	// SignMeUp = () => {
+	//
+	// 	if(param.type == 'consumer') {
+	//
+	// 		return <Text>Consumer</Text>;
+	//
+	// 	}else if(param.type == 'business'){
+	// 		return <Text>Business</Text>;
+	// 	}
+	// }
 
 
-	// if(param.type == 'consumer') {
-	//
-	// 	<Text>Consumer</Text>
-	//
-	// }else if(param.type == 'business'){
-	// 	<Text>Business</Text>
-	// }
-	//
-	//
-	// function Greeting(props) {
-	//   const isLoggedIn = props.isLoggedIn;
-	//   if (isLoggedIn) {
-	//     return <UserGreeting />;
-	//   }
-	//   return <GuestGreeting />;
-	// }
-	//
+
 
 	//LEFT OFF HERE TRYING TO CREATE THE TWO SEPERATE COMPONENTS FOR SIGN UP AND BUSINESS
 	//https://reactjs.org/docs/conditional-rendering.html
@@ -52,11 +52,8 @@ class SignUp extends React.Component<Props, State> {
 				</Header>
 
 				<Content padder>
-
-
-
-
-
+					<ConsumerGreeting/>
+					{/* <SignMeUp/> */}
 					{/* <Counter/> */}
 					{/* <Text>{param !== undefined ? param.id: "List Thumbnails are the medium to exhibit an image with your list item. To create a thumbnail list, nest <Thumbnail> component within <ListItem> component with few props and style. List Thumbnails are the medium to exhibit an image with your list item. To create a thumbnail list, nest <Thumbnail> component within <ListItem> component with few props and style."}</Text> */}
 				</Content>
@@ -64,5 +61,7 @@ class SignUp extends React.Component<Props, State> {
 		);
 	}
 }
+
+
 
 export default SignUp;
