@@ -5,11 +5,17 @@ const styles: any = StyleSheet.create({
 		backgroundColor: "#FBFAFA",
 	},
 	submitBtn: {
-		marginTop: 20,
+		marginTop: 30,
 	},
 	label: {
-		marginTop: 10,
-		
+		marginTop: 23,
+	},
+	textField: {
+		// borderBottomWidth: 3,
+		// height: 40,
+		// borderColor: 'gray',
+		// borderWidth: 1,
+		// marginBottom: 25,
 	}
 });
 export default styles;

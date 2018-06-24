@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Container, Header, Title, Content, Text, Button, Icon, Left, Right, Body, Footer, Toast, FooterTab } from "native-base";
+import { Container, Header, Title, Content, Text, Button, Icon, Left, Right, Body, Footer, Toast, FooterTab, Form, Item, Label, Input } from "native-base";
 import { View, Alert, TextInput } from 'react-native';
 
 import styles from "./styles";
@@ -64,26 +64,33 @@ class ConsumerGreeting extends React.Component<Props, State> {
 
 		return (
 			<Container>
-				<Text>Name:</Text>
-				<TextInput
-					style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-					onChangeText={this.textChange('name')}
-					value={this.state.text}
-				/>
-				<Text>Email:</Text>
-				<TextInput
-					style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-					onChangeText={this.textChange('email')}
-					value={this.state.text}
-				/>
-				<Text>Password:</Text>
-				<TextInput
-					style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-					onChangeText={this.textChange('password')}
-				/>
-
-				<Button onPress={this.submitForm} style={styles.submitBtn} color="red" rounded><Text>SUBMIT</Text></Button>
-
+				<Form>
+					<Item floatingLabel>
+						<Label>Name:</Label>
+						<Input
+							style={styles.textField}
+							onChangeText={this.textChange('name')}
+							value={this.state.user.name}
+						/>
+					</Item>
+					<Item floatingLabel>
+						<Label>Email:</Label>
+						<Input
+							style={styles.textField}
+							onChangeText={this.textChange('email')}
+							value={this.state.user.email}
+						/>
+					</Item>
+					<Item floatingLabel>
+						<Label>Password:</Label>
+						<Input
+							style={styles.textField}
+							onChangeText={this.textChange('password')}
+							secureTextEntry={true}
+						/>
+					</Item>
+					<Button onPress={this.submitForm} style={styles.submitBtn} color="red" block ><Text>SUBMIT</Text></Button>
+				</Form>
 			</Container>
 		);
 	}
