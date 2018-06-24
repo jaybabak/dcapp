@@ -41,23 +41,26 @@ class Home extends React.Component<Props, State> {
         </Header>
         <Content>
           <List>
-            {this.props.list.map((item, i) => (
+            {this.props.list.map((item, userType) => (
               <ListItem
-                key={i}
+                key={userType}
                 onPress={() => {
-                  console.log(i);
-                  if(i == 0){
+                  const consumer = 0;
+                  const merchant = 1;
+                  if(userType == consumer){
                     //consumer
                     this.props.navigation.navigate("SignUp", {
                       title: "Register",
                       type: "consumer"
                     })
-                  }else {
+                  }else if(userType == merchant){
                     //business
                     this.props.navigation.navigate("SignUp", {
                       title: "Merchant Registeration",
                       type: "merchant"
                     })
+                  }else {
+                    this.props.navigation.navigate("Home")
                   }
 
               }}
