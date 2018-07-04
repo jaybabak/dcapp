@@ -16,15 +16,35 @@ export interface State {}
 @inject("countersStore")
 @observer
 class BlankPage extends React.Component<Props, State> {
-
+	state: {
+		isReady: boolean,
+	};
+	constructor() {
+		super();
+		this.state = {
+			isReady: false,
+		};
+	}
 
 
 	doSomething() {
 		const countz = this.props.countersStore;
-		console.log(countz.getTotal());
+		console.log(countz.getTotal);
 
 	}
 
+
+	componentWillMount(){
+
+		// setTimeout(() => {
+		//
+		// 	// this.setState({
+		// 	// 	isReady: true;
+		// 	// });
+		//
+		// }), 3000);
+
+	}
 
 	render() {
 		// const countersStore = this.props.countersStore;
@@ -33,13 +53,22 @@ class BlankPage extends React.Component<Props, State> {
 
 		{console.log(countz);}
 
+		let that = this;
+ 		setTimeout(function(){that.setState({isReady: true})}, 5000);
+
 		const CountBtn = (
 			<View>
-			<Text>Total Number Of Count: {countz.getTotal()}</Text>
+			{/* <Text>Total Number Of Count: {countz.getTotal()}</Text> */}
 			<Button onPress={() => countz.increase()} color="red" rounded><Text>Increase +</Text></Button>
 			<Button onPress={() => countz.decrease()} rounded><Text>Decrease -</Text></Button>
 			</View>
 		);
+
+		if (!this.state.isReady) {
+			return <Expo.AppLoading/>;
+		}
+		if(this.state.isReady){
+
 
 		return (
 			<Container style={styles.container}>
@@ -66,6 +95,7 @@ class BlankPage extends React.Component<Props, State> {
 				</Content>
 			</Container>
 		);
+		}
 	}
 }
 

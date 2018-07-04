@@ -13,6 +13,7 @@ import {
   List,
   ListItem
 } from "native-base";
+import { observer, inject } from "mobx-react/native";
 
 import styles from "./styles";
 export interface Props {
@@ -20,7 +21,9 @@ export interface Props {
   list: any;
 }
 export interface State {}
+
 class Home extends React.Component<Props, State> {
+
   render() {
     return (
       <Container style={styles.container}>

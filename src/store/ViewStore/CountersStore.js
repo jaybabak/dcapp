@@ -5,20 +5,19 @@ class CountersStore {
 
   @action
   increase() {
-    this.count + 1;
-    console.log("incremented" + this.getTotal());
+    this.count++;
+    console.log("incremented" + this.count);
   }
   @action
   decrease() {
-    this.count - 1;
-    console.log("decrement" + this.getTotal());
+    this.count--;
+    console.log("decrement" + this.count);
   }
-  @action
-  getTotal() {
+  @computed get getTotal() {
     return this.count;
   }
-  autorun(){
-    console.log(this.count);
+  autorun = () => {
+    console.log(this.count)
   }
 }
 
