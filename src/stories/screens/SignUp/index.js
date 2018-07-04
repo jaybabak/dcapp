@@ -2,7 +2,6 @@ import * as React from "react";
 import { Container, Header, Title, Content, Text, Button, Icon, Left, Right, Body } from "native-base";
 
 import styles from "./styles";
-import Counter from "./counter";
 import ConsumerGreeting from "./consumer";
 
 export interface Props {

@@ -1,14 +1,46 @@
 import * as React from "react";
+import { View } from "react-native";
 import { Container, Header, Title, Content, Text, Button, Icon, Left, Right, Body } from "native-base";
+import { observer, inject } from "mobx-react/native";
+
+
+import Counter from "./counter";
 
 import styles from "./styles";
 export interface Props {
-	navigation: any;
+	navigation: any,
+	countersStore: any,
 }
 export interface State {}
+
+@inject("countersStore")
+@observer
 class BlankPage extends React.Component<Props, State> {
+
+
+
+	doSomething() {
+		const countz = this.props.countersStore;
+		console.log(countz.getTotal());
+
+	}
+
+
 	render() {
+		// const countersStore = this.props.countersStore;
 		const param = this.props.navigation.state.params;
+		const countz = this.props.countersStore;
+
+		{console.log(countz);}
+
+		const CountBtn = (
+			<View>
+			<Text>Total Number Of Count: {countz.getTotal()}</Text>
+			<Button onPress={() => countz.increase()} color="red" rounded><Text>Increase +</Text></Button>
+			<Button onPress={() => countz.decrease()} rounded><Text>Decrease -</Text></Button>
+			</View>
+		);
+
 		return (
 			<Container style={styles.container}>
 				<Header>
@@ -26,10 +58,10 @@ class BlankPage extends React.Component<Props, State> {
 				</Header>
 
 				<Content padder>
-					<Text style={styles.h1}>ABOUT US</Text>
-					<Text style={styles.body}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer in lorem in tellus volutpat facilisis vel sed urna. Etiam aliquam vulputate sapien, vitae consequat ligula auctor et. Sed nec dui sagittis, pulvinar libero a, imperdiet erat. Ut eu nibh ut sapien viverra tincidunt. Suspendisse vulputate tellus bibendum justo convallis accumsan. Suspendisse porttitor augue eu dui ornare facilisis. Fusce pharetra, nulla in aliquam ultrices, libero urna sagittis urna, quis semper nulla leo vehicula sapien. Phasellus convallis bibendum odio, dapibus scelerisque mauris lacinia sed. Vestibulum pretium odio tempus felis lacinia, id sagittis purus efficitur. Vivamus egestas sed ligula nec imperdiet. In congue dapibus rutrum.</Text>
-					<Text style={styles.h2}>Why We care</Text>
-					<Text style={styles.body}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer in lorem in tellus volutpat facilisis vel sed urna. Etiam aliquam vulputate sapien, vitae consequat ligula auctor et. Sed nec dui sagittis, pulvinar libero a, imperdiet erat. Ut eu nibh ut sapien viverra tincidunt. Suspendisse vulputate tellus bibendum justo convallis accumsan. Suspendisse porttitor augue eu dui ornare facilisis. Fusce pharetra, nulla in aliquam ultrices, libero urna sagittis urna, quis semper nulla leo vehicula sapien. Phasellus convallis bibendum odio, dapibus scelerisque mauris lacinia sed. Vestibulum pretium odio tempus felis lacinia, id sagittis purus efficitur. Vivamus egestas sed ligula nec imperdiet. In congue dapibus rutrum.</Text>
+
+
+
+					<Counter countersStore={CountBtn} computer={() => this.doSomething()} />
 
 				</Content>
 			</Container>

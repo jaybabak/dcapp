@@ -3,11 +3,19 @@ import { Image, Platform } from "react-native";
 import { Container, Content, Header, Body, Title, Button, Text, View, Icon, Footer } from "native-base";
 //import styles from "./styles";
 export interface Props {
-	loginForm: any,
-	onLogin: Function,
+	loginForm: any, //Declaring all the different properties being passed to it - 'any' used for data
+	onLogin: Function, //Also declaring the type of prop being passes for 'Functiosn being passed as props'
 }
-export interface State {}
+
+export interface State {
+}
+
 class Login extends React.Component<Props, State> {
+
+
+
+
+
 	render() {
 		return (
 			<Container>
@@ -23,7 +31,7 @@ class Login extends React.Component<Props, State> {
 					</Body>
 				</Header>
 				<Content>
-					{/* {this.props.loginForm} */}
+					{this.props.loginForm}
 					<View padder>
 						<Button block onPress={() => this.props.onLogin()}>
 							<Text>Get Started!</Text>

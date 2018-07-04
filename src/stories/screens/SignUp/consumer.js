@@ -29,6 +29,10 @@ class ConsumerGreeting extends React.Component<Props, State> {
 		//  this.setState({text});
 		// console.log(text);
 
+		if (!this.state.isReady) {
+			return <Expo.AppLoading />;
+		}
+
 		Alert.alert(
 	  'Confirm Registration?',
 	  'Are you sure you would like to submit?',

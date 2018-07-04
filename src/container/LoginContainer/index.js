@@ -58,6 +58,12 @@ export default class LoginContainer extends React.Component<Props, State> {
 				</Item>
 			</Form>
 		);
+
+		//****************************
+		//Created form field in side the login container file
+		// Imports Login component (../stories/screens/Login/index.js) and passes the fields to the login component as prop for "loginForm"
+		// onLogin business logic inside function (this file) called login() <--validation determines if valid
+
 		return <Login navigation={this.props.navigation} loginForm={Fields} onLogin={() => this.login()} />;
 	}
 }
