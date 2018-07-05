@@ -17,7 +17,7 @@ class CountersStore {
     return this.count;
   }
   autorun = () => {
-    console.log(this.count)
+    console.log(this.getTotal);
   }
 }
 

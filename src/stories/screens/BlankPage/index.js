@@ -1,6 +1,6 @@
 import * as React from "react";
 import { View } from "react-native";
-import { Container, Header, Title, Content, Text, Button, Icon, Left, Right, Body } from "native-base";
+import { Container, Header, Title, Content, Text, Button, Icon, Left, Right, Body, Toast } from "native-base";
 import { observer, inject } from "mobx-react/native";
 
 
@@ -30,6 +30,10 @@ class BlankPage extends React.Component<Props, State> {
 	doSomething() {
 		const countz = this.props.countersStore;
 		console.log(countz.getTotal);
+				Toast.show({
+					 text: 'Counter @: ' + countz.getTotal,
+					 buttonText: "Ok"
+				 })
 
 	}
 

@@ -7,11 +7,11 @@ import Home from "./container/HomeContainer";
 import SignUpContainer from "./container/SignUpContainer";
 import BlankPage from "./container/BlankPageContainer";
 import Sidebar from "./container/SidebarContainer";
-// import DevTools from 'mobx-react-devtools'
 
 const Drawer = DrawerNavigator(
 	{
 		Home: { screen: Home },
+		BlankPage: { screen: BlankPage },
 	},
 	{
 		initialRouteName: "Home",
@@ -22,7 +22,6 @@ const Drawer = DrawerNavigator(
 const App = StackNavigator(
 	{
 		Login: { screen: Login },
-		BlankPage: { screen: BlankPage },
 		SignUp: { screen: SignUpContainer },
 		Drawer: { screen: Drawer },
 	},
@@ -35,6 +34,5 @@ const App = StackNavigator(
 export default () => (
 	<Root>
 		<App />
-		{/* <DevTools /> */}
 	</Root>
 );

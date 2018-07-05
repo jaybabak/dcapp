@@ -3,6 +3,7 @@ import { Container, Header, Title, Content, Text, Button, Icon, Left, Right, Bod
 
 import styles from "./styles";
 import ConsumerGreeting from "./consumer";
+import BusinessGreeting from "./business";
 
 export interface Props {
 	navigation: any;
@@ -26,6 +27,10 @@ class SignUp extends React.Component<Props, State> {
 	// 	}
 	// }
 
+	// componentWillMount = () => {
+	// 	this.props.navigation.getParam('type');
+	// }
+
 
 
 
@@ -34,6 +39,13 @@ class SignUp extends React.Component<Props, State> {
 
 	render() {
 		const param = this.props.navigation.state.params;
+
+		if(param.type == 'consumer'){
+			signupForm = 	<ConsumerGreeting/>;
+		}else if(param.type == 'merchant'){
+			signupForm = 	<BusinessGreeting/>;
+		}
+
 		return (
 			<Container style={styles.container}>
 				<Header>
@@ -51,10 +63,8 @@ class SignUp extends React.Component<Props, State> {
 				</Header>
 
 				<Content padder>
-					<ConsumerGreeting/>
-					{/* <SignMeUp/> */}
-					{/* <Counter/> */}
-					{/* <Text>{param !== undefined ? param.id: "List Thumbnails are the medium to exhibit an image with your list item. To create a thumbnail list, nest <Thumbnail> component within <ListItem> component with few props and style. List Thumbnails are the medium to exhibit an image with your list item. To create a thumbnail list, nest <Thumbnail> component within <ListItem> component with few props and style."}</Text> */}
+				{signupForm}
+
 				</Content>
 			</Container>
 		);
