@@ -58,7 +58,7 @@ class BlankPage extends React.Component<Props, State> {
 		{console.log(countz);}
 
 		let that = this;
- 		setTimeout(function(){that.setState({isReady: true})}, 5000);
+ 		setTimeout(function(){that.setState({isReady: true})}, 2500);
 
 		const CountBtn = (
 			<View>

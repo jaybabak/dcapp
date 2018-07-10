@@ -1,17 +1,21 @@
 import * as React from "react";
 import { Container, Header, Title, Content, Text, Button, Icon, Left, Right, Body } from "native-base";
+import { observer, inject } from "mobx-react/native";
 
 import styles from "./styles";
+
 import ConsumerGreeting from "./consumer";
 import BusinessGreeting from "./business";
 
 export interface Props {
 	navigation: any;
+	signUpStore: any,
 }
 
-
-
 export interface State {}
+
+@inject("signUpStore")
+@observer
 class SignUp extends React.Component<Props, State> {
 
 // const param = this.props.navigation.state.params;
@@ -40,8 +44,10 @@ class SignUp extends React.Component<Props, State> {
 	render() {
 		const param = this.props.navigation.state.params;
 
+		const signMeUp = this.props.signUpStore;
+
 		if(param.type == 'consumer'){
-			signupForm = 	<ConsumerGreeting/>;
+			signupForm = 	<ConsumerGreeting signUpStore={signMeUp}/>;
 		}else if(param.type == 'merchant'){
 			signupForm = 	<BusinessGreeting/>;
 		}

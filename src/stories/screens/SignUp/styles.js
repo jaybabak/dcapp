@@ -5,7 +5,7 @@ const styles: any = StyleSheet.create({
 		backgroundColor: "#FBFAFA",
 	},
 	submitBtn: {
-		marginTop: 30,
+		marginTop: 45,
 	},
 	label: {
 		marginTop: 23,
