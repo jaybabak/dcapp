@@ -11,7 +11,8 @@ import {
   Body,
   Right,
   List,
-  ListItem
+  ListItem,
+  Subtitle
 } from "native-base";
 import { observer, inject } from "mobx-react/native";
 
@@ -24,7 +25,40 @@ export interface State {}
 
 class Home extends React.Component<Props, State> {
 
+
+  componentDidMount(){
+
+
+
+
+
+  }
+
   render() {
+
+    var greeting = null;
+
+    if(this.props.navigation.state.params){
+
+      console.log(this.props.navigation.state.params);
+
+      const param = this.props.navigation.state.params;
+      //
+      if(param.status == true){
+        greeting = <Subtitle>Hello {param.name}!</Subtitle>;
+        greeting = <Button disabled block><Text>Hello {param.name}!</Text></Button>;
+      }
+      // else{
+      // var greeting = <Subtitle>Hello Stranger!</Subtitle>;
+      // }
+
+    }else {
+      console.log('Anonymous User');
+      // greeting = <Subtitle>Hello Stranger!</Subtitle>;
+      greeting = <Button disabled block><Text>Hello Stranger!</Text></Button>
+    }
+
+
     return (
       <Container style={styles.container}>
         <Header>
@@ -43,6 +77,7 @@ class Home extends React.Component<Props, State> {
           <Right />
         </Header>
         <Content>
+          {greeting}
           <List>
             {this.props.list.map((item, userType) => (
               <ListItem

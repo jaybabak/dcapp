@@ -14,11 +14,43 @@ export interface State {}
 @observer
 class ConsumerGreeting extends React.Component<Props, State> {
 
+// 	constructor(props, context) {
+// 	super(props, context);
+//
+// 	// set the initial component state
+// 	this.state = {
+// 		formValid: false,
+// 	};
+//
+// }
+
+
+	confirmSignUp = () => {
+
+		const signers = this.props.signUpStore;
+		signers.submitForm()
+
+		setTimeout(() => {
+			if(signers.validateForm == true){
+
+				this.props.navigation.navigate("Home", {
+					status: true,
+					name: signers.name
+				});
+				signers.clearStore();
+			}
+		}, 1000);
+
+	}
+
+
 
 	render() {
 
 		const signer = this.props.signUpStore;
 		console.log(signer);
+
+
 
 		return (
 			<Container>
@@ -29,6 +61,7 @@ class ConsumerGreeting extends React.Component<Props, State> {
 							style={styles.textField}
 							onChangeText={event => signer.nameChange(event)}
 							value={signer.name}
+							onBlur={signer.submitForm}
 						/>
 					</Item>
 					<Item floatingLabel>
@@ -37,6 +70,7 @@ class ConsumerGreeting extends React.Component<Props, State> {
 							style={styles.textField}
 							onChangeText={event => signer.emailChange(event)}
 							value={signer.email}
+							onBlur={signer.submitForm}
 						/>
 					</Item>
 					<Item floatingLabel last>
@@ -45,9 +79,11 @@ class ConsumerGreeting extends React.Component<Props, State> {
 							style={styles.textField}
 							onChangeText={event => signer.pwdChange(event)}
 							secureTextEntry={true}
+							value={signer.password}
+							onBlur={signer.submitForm}
 						/>
 					</Item>
-					<Button onPress={signer.submitForm} style={styles.submitBtn} color="red" block ><Text>SUBMIT</Text></Button>
+					<Button onPress={this.confirmSignUp} style={styles.submitBtn} color="red" block ><Text>Sign Up!</Text></Button>
 				</Form>
 			</Container>
 		);

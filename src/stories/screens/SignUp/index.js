@@ -24,9 +24,9 @@ class SignUp extends React.Component<Props, State> {
 		const signMeUp = this.props.signUpStore;
 
 		if(param.type == 'consumer'){
-			signupForm = 	<ConsumerGreeting signUpStore={signMeUp}/>;
+			var signupForm = 	<ConsumerGreeting signUpStore={signMeUp} navigation={this.props.navigation}/>;
 		}else if(param.type == 'merchant'){
-			signupForm = 	<BusinessGreeting/>;
+			var signupForm = 	<BusinessGreeting/>;
 		}
 
 		return (

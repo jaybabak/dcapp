@@ -16,6 +16,7 @@ class SignUpStore {
   @observable email = '';
   @observable password = '';
   @observable errors = {};
+  @observable isValid = false;
 
   @action
   nameChange = (event) => {
@@ -41,7 +42,7 @@ class SignUpStore {
     const userPassword = encodeURIComponent(this.password);
     const formData = `name=${userName}&email=${userEmail}&password=${userPassword}`;
 
-    console.log('YUP');
+    // console.log('YUP');
 
     const user = {
       "name": this.name,
@@ -68,47 +69,17 @@ class SignUpStore {
       .catch(error => console.error(`Fetch Error =\n`, error));
     };
 
-    postData(`http://localhost:5000/auth/signup`, user)
+    postData(`http://localhost:5000/auth/signup`, '')
     .then((data) => {
       console.log(data);
+
+      if(data.success == true){
+        this.isValid = true;
+        console.log(this.isValid);
+      }
+
     }) // JSON from `response.json()` call
     .catch(error => console.error(error));
-
-
-
-
-    // const xhr = new XMLHttpRequest();
-    // xhr.open('post', '/auth/signup');
-    // xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    // xhr.responseType = 'json';
-    //
-    //
-    // xhr.addEventListener('load', () => {
-    //   if (xhr.status === 200) {
-    //     // success
-    //
-    //     // change the component-container state
-    //     this.errors = errors;
-    //     console.log(xhr);
-    //     // set a message
-    //     // localStorage.setItem('successMessage', xhr.response.message);
-    //
-    //     // redirect user after sign up to login page
-    //     // this.props.history.push('/login');
-    //   } else {
-    //     // failure
-    //
-    //     // errors = xhr.response.errors ? xhr.response.errors : {};
-    //     // errors.summary = xhr.response.message;
-    //     console.log(this);
-    //
-    //     this.errors = errors;
-    //   }
-    // });
-    //
-    // xhr.send(formData);
-
-
 
     // Alert.alert(
 	  // 'Consumer Regisration',
@@ -126,6 +97,19 @@ class SignUpStore {
 		//   { cancelable: false }
 		// )
 
+  }
+
+  @action
+  clearStore() {
+    this.email = "";
+    this.isValid = false;
+    this.name = "";
+    this.password = "";
+    this.errors = {};
+  }
+
+  @computed get validateForm(){
+    return this.isValid;
   }
 
 
