@@ -15,22 +15,7 @@ class SignUpStore {
   @observable name = '';
   @observable email = '';
   @observable password = '';
-
-  @action
-  textChange = (field) => (event) => {
-
-    // console.log(field);
-    // console.log(event);
-    var x = this.field;
-    // const user = this.pojo.user;
-
-    x = event;
-
-    // user[field] = event;
-
-		// console.log(user);
-  }
-
+  @observable errors = {};
 
   @action
   nameChange = (event) => {
@@ -50,21 +35,62 @@ class SignUpStore {
   @action
   submitForm = () => {
 
-    Alert.alert(
-	  'Consumer Regisration',
-	  'Are you sure you would like to submit this as a consumer?',
-	  [
-	    {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-	    {text: 'OK', onPress: () => {
-				Toast.show({
-					 text: 'Signup Completed ' + this.name+ '!',
-					 buttonText: "Ok"
-				 })
-				// console.log(text.target);
-			}},
-	  ],
-		  { cancelable: false }
-		)
+
+    const userName = encodeURIComponent(this.name);
+    const userEmail = encodeURIComponent(this.email);
+    const userPassword = encodeURIComponent(this.password);
+    const formData = `name=${userName}&email=${userEmail}&password=${userPassword}`;
+
+    console.log('YUP');
+
+    const xhr = new XMLHttpRequest();
+    xhr.open('post', '/auth/signup');
+    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    xhr.responseType = 'json';
+
+
+    xhr.addEventListener('load', () => {
+      if (xhr.status === 200) {
+        // success
+
+        // change the component-container state
+        this.errors = errors;
+        console.log(xhr);
+        // set a message
+        // localStorage.setItem('successMessage', xhr.response.message);
+
+        // redirect user after sign up to login page
+        // this.props.history.push('/login');
+      } else {
+        // failure
+
+        // errors = xhr.response.errors ? xhr.response.errors : {};
+        // errors.summary = xhr.response.message;
+        console.log(this);
+
+        this.errors = errors;
+      }
+    });
+
+    xhr.send(formData);
+
+
+
+    // Alert.alert(
+	  // 'Consumer Regisration',
+	  // 'Are you sure you would like to submit this as a consumer?',
+	  // [
+	  //   {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+	  //   {text: 'OK', onPress: () => {
+		// 		Toast.show({
+		// 			 text: 'Signup Completed ' + this.name+ '!',
+		// 			 buttonText: "Ok"
+		// 		 })
+		// 		// console.log(text.target);
+		// 	}},
+	  // ],
+		//   { cancelable: false }
+		// )
 
   }
 

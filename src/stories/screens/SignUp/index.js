@@ -18,29 +18,6 @@ export interface State {}
 @observer
 class SignUp extends React.Component<Props, State> {
 
-// const param = this.props.navigation.state.params;
-
-	// SignMeUp = () => {
-	//
-	// 	if(param.type == 'consumer') {
-	//
-	// 		return <Text>Consumer</Text>;
-	//
-	// 	}else if(param.type == 'business'){
-	// 		return <Text>Business</Text>;
-	// 	}
-	// }
-
-	// componentWillMount = () => {
-	// 	this.props.navigation.getParam('type');
-	// }
-
-
-
-
-	//LEFT OFF HERE TRYING TO CREATE THE TWO SEPERATE COMPONENTS FOR SIGN UP AND BUSINESS
-	//https://reactjs.org/docs/conditional-rendering.html
-
 	render() {
 		const param = this.props.navigation.state.params;
 
