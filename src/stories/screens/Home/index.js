@@ -16,6 +16,8 @@ import {
 } from "native-base";
 import { observer, inject } from "mobx-react/native";
 
+import UserGreeting from "../UserGreeting/";
+
 import styles from "./styles";
 export interface Props {
   navigation: any;
@@ -48,9 +50,6 @@ class Home extends React.Component<Props, State> {
         greeting = <Subtitle>Hello {param.name}!</Subtitle>;
         greeting = <Button disabled block><Text>Hello {param.name}!</Text></Button>;
       }
-      // else{
-      // var greeting = <Subtitle>Hello Stranger!</Subtitle>;
-      // }
 
     }else {
       console.log('Anonymous User');
@@ -77,7 +76,7 @@ class Home extends React.Component<Props, State> {
           <Right />
         </Header>
         <Content>
-          {greeting}
+          <UserGreeting/>
           <List>
             {this.props.list.map((item, userType) => (
               <ListItem

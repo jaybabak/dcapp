@@ -7,10 +7,11 @@ import styles from "./styles";
 export interface Props {
 	navigation: any,
 	signUpStore: any,
+	mainStore: any,
 }
 export interface State {}
 
-@inject("signUpStore")
+@inject("signUpStore", "mainStore")
 @observer
 class ConsumerGreeting extends React.Component<Props, State> {
 
@@ -30,8 +31,13 @@ class ConsumerGreeting extends React.Component<Props, State> {
 		const signers = this.props.signUpStore;
 		signers.submitForm()
 
+
+		const home = this.props.mainStore;
+
 		setTimeout(() => {
 			if(signers.validateForm == true){
+
+				home.setName(signers.name);
 
 				this.props.navigation.navigate("Home", {
 					status: true,
