@@ -34,7 +34,7 @@ class SignUpStore {
   }
 
   @action
-  submitForm = () => {
+  submitForm = (navi) => {
 
 
     const userName = encodeURIComponent(this.name);
@@ -75,7 +75,10 @@ class SignUpStore {
 
       if(data.success == true){
         this.isValid = true;
+        // this.clearStore();
         console.log(this.isValid);
+        navi.navigate("Home");
+        // this.isValid = false;
       }
 
     }) // JSON from `response.json()` call

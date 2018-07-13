@@ -4,7 +4,7 @@ class HomeStore {
   @observable hasErrored = false;
   @observable isLoading = true;
   @observable items = [];
-  @observable name = '@AnonymousUser';
+  @observable name = 'Welcome!';
 
 
   @action

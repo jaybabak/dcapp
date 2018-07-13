@@ -29,23 +29,47 @@ class ConsumerGreeting extends React.Component<Props, State> {
 	confirmSignUp = () => {
 
 		const signers = this.props.signUpStore;
-		signers.submitForm()
-
-
 		const home = this.props.mainStore;
 
-		setTimeout(() => {
-			if(signers.validateForm == true){
 
-				home.setName(signers.name);
 
-				this.props.navigation.navigate("Home", {
-					status: true,
-					name: signers.name
-				});
-				signers.clearStore();
-			}
-		}, 1000);
+				if(signers.validateForm == true){
+
+					Toast.show({
+						text: home.getName + "you already signed up silly!",
+						duration: 4000,
+						position: "bottom",
+						textStyle: { textAlign: "center" },
+					});
+
+					return;
+
+				}
+
+		signers.submitForm(this.props.navigation);
+
+
+		home.setName(signers.name);
+
+		const w = signers.name;
+
+		// setTimeout(() => {
+			// if(signers.validateForm == true){
+		// //
+		// // 		home.setName(signers.name);
+		// //
+		// // 		this.props.navigation.navigate("Home", {
+		// // 			status: true,
+		// // 			name: signers.name
+		// // 		});
+		// //
+		//
+
+				// signers.clearStore();
+				// home.setName(x);
+		//
+			// }
+		// }, 1000);
 
 	}
 
@@ -55,8 +79,6 @@ class ConsumerGreeting extends React.Component<Props, State> {
 
 		const signer = this.props.signUpStore;
 		console.log(signer);
-
-
 
 		return (
 			<Container>
