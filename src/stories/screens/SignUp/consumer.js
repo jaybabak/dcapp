@@ -36,7 +36,7 @@ class ConsumerGreeting extends React.Component<Props, State> {
 				if(signers.validateForm == true){
 
 					Toast.show({
-						text: home.getName + "you already signed up silly!",
+						text: home.getName + " you already signed up silly!",
 						duration: 4000,
 						position: "bottom",
 						textStyle: { textAlign: "center" },
@@ -50,8 +50,6 @@ class ConsumerGreeting extends React.Component<Props, State> {
 
 
 		home.setName(signers.name);
-
-		const w = signers.name;
 
 		// setTimeout(() => {
 			// if(signers.validateForm == true){
