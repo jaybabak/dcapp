@@ -70,7 +70,7 @@ class LoginStore {
 
 
   @action
-  submitForm = (navi, home) => {
+  submitForm = (navi, homeStore) => {
 
 
     const userEmail = encodeURIComponent(this.email);
@@ -104,13 +104,16 @@ class LoginStore {
 
       if(data.success == true){
 
-        home.setName(data.user.name);
+        homeStore.setName(data.user.name);
+
 
         Auth.authenticateUser(data.token);
+        homeStore.toggleAuthenticateStatus();
+        console.log(homeStore.authenticated);
 
         Alert.alert(
           'Logged in successfully!',
-          'Welcome ' + home.getName,
+          'Welcome ' + homeStore.getName,
           [
             {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
             {text: 'OK', onPress: () => {

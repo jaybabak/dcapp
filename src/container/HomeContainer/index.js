@@ -20,8 +20,10 @@ export default class HomeContainer extends React.Component<Props, State> {
 
 	componentDidMount() {
 
-		const home = this.props.mainStore;
-		console.log(home);
+		// const home = this.props.mainStore;
+
+		// home.toggleAuthenticateStatus()
+		// console.log(home.authenticated);
 
 	}
 

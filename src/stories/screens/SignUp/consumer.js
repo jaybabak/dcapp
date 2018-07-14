@@ -48,9 +48,6 @@ class ConsumerGreeting extends React.Component<Props, State> {
 
 		signers.submitForm(this.props.navigation);
 
-
-		home.setName(signers.name);
-
 		// setTimeout(() => {
 			// if(signers.validateForm == true){
 		// //
