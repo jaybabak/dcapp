@@ -1,5 +1,6 @@
 import { observable, action, computed } from "mobx";
 import Auth from '../../modules/Auth';
+import { AsyncStorage } from "react-native"
 
 class HomeStore {
   @observable hasErrored = false;
@@ -27,6 +28,20 @@ class HomeStore {
   toggleAuthenticateStatus() {
     this.authenticated = Auth.isUserAuthenticated();
   }
+
+  @action
+  deauthenticateUser() {
+    Auth.deauthenticateUser();
+  }
+
+  @computed get userAuthenticated() {
+    return  AsyncStorage.getItem('token') !== null;
+  }
+
+  @computed get getToken() {
+    return  AsyncStorage.getItem('token');
+  }
+
 }
 
 export default HomeStore;

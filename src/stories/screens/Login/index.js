@@ -1,19 +1,30 @@
 import * as React from "react";
 import { Image, Platform } from "react-native";
 import { Container, Content, Header, Body, Title, Button, Text, View, Icon, Footer } from "native-base";
+import { observer, inject } from "mobx-react/native";
 //import styles from "./styles";
 export interface Props {
 	loginForm: any, //Declaring all the different properties being passed to it - 'any' used for data
+	mainStore: any,
 	onLogin: Function, //Also declaring the type of prop being passes for 'Functiosn being passed as props'
 }
 
 export interface State {
 }
 
+@inject("mainStore")
+@observer
 class Login extends React.Component<Props, State> {
 
 
+	componentDidMount(){
 
+		const home = this.props.mainStore;
+
+		//CLEAR LOCAL STORED TOKEN WHEN ARRIVING ON LOGIN SCREEN
+		// home.deauthenticateUser();
+
+	}
 
 
 	render() {

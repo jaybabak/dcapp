@@ -1,7 +1,7 @@
 import { AsyncStorage } from "react-native"
 
 class Auth {
-
+ 
   /**
    * Authenticate a user. Save a token string in Local Storage
    *

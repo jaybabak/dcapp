@@ -22,9 +22,12 @@ import styles from "./styles";
 export interface Props {
   navigation: any;
   list: any;
+  mainStore: any,
 }
 export interface State {}
 
+@inject("mainStore")
+@observer
 class Home extends React.Component<Props, State> {
 
 
@@ -32,30 +35,31 @@ class Home extends React.Component<Props, State> {
 
 
     // console.log
+    const home = this.props.mainStore;
 
+		// console.log(home.userAuthenticated);
 
   }
 
   render() {
 
-    // var greeting = null;
-    //
-    // if(this.props.navigation.state.params){
-    //
-    //   console.log(this.props.navigation.state.params);
-    //
-    //   const param = this.props.navigation.state.params;
-    //   //
-    //   if(param.status == true){
-    //     greeting = <Subtitle>Hello {param.name}!</Subtitle>;
-    //     greeting = <Button disabled block><Text>Hello {param.name}!</Text></Button>;
-    //   }
-    //
-    // }else {
-    //   console.log('Anonymous User');
-    //   // greeting = <Subtitle>Hello Stranger!</Subtitle>;
-    //   greeting = <Button disabled block><Text>Hello Stranger!</Text></Button>
-    // }
+    var isUserLoggedIn = null;
+
+    if(this.props.navigation.state.params){
+
+      console.log(this.props.navigation.state.params);
+
+      const param = this.props.navigation.state.params;
+      //
+      if(param.status == true){
+        greeting = <Subtitle>Hello {param.name}!</Subtitle>;
+        greeting = <Button disabled block><Text>Hello {param.name}!</Text></Button>;
+      }
+
+    }else {
+      // greeting = <Subtitle>Hello Stranger!</Subtitle>;
+      greeting = <Button disabled block><Text>Hello Stranger!</Text></Button>
+    }
 
 
     return (
@@ -86,18 +90,10 @@ class Home extends React.Component<Props, State> {
                   const merchant = 1;
                   if(userType == consumer){
                     //consumer
-                    this.props.navigation.navigate("SignUp", {
-                      title: "Register",
-                      type: "consumer"
-                    })
+                    this.props.navigation.navigate("SignUp")
                   }else if(userType == merchant){
                     //business
-                    this.props.navigation.navigate("SignUp", {
-                      title: "Merchant Registeration",
-                      type: "merchant"
-                    })
-                  }else {
-                    this.props.navigation.navigate("Home")
+                    this.props.navigation.navigate("SignUp");
                   }
 
               }}
