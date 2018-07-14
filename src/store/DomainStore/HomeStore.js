@@ -1,11 +1,12 @@
 import { observable, action, computed } from "mobx";
+import Auth from '../../modules/Auth';
 
 class HomeStore {
   @observable hasErrored = false;
   @observable isLoading = true;
   @observable items = [];
-  @observable name = 'Welcome!';
-
+  @observable name = '@user';
+  @observable authenticated = false;
 
   @action
   fetchItems(data) {
@@ -20,6 +21,11 @@ class HomeStore {
 
   @computed get getName(){
     return this.name;
+  }
+
+  @action
+  toggleAuthenticateStatus() {
+    this.authenticated = Auth.isUserAuthenticated();
   }
 }
 

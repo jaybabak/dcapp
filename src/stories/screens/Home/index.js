@@ -38,26 +38,6 @@ class Home extends React.Component<Props, State> {
 
   render() {
 
-    var greeting = null;
-
-    if(this.props.navigation.state.params){
-
-      console.log(this.props.navigation.state.params);
-
-      const param = this.props.navigation.state.params;
-      //
-      if(param.status == true){
-        greeting = <Subtitle>Hello {param.name}!</Subtitle>;
-        greeting = <Button disabled block><Text>Hello {param.name}!</Text></Button>;
-      }
-
-    }else {
-      console.log('Anonymous User');
-      // greeting = <Subtitle>Hello Stranger!</Subtitle>;
-      greeting = <Button disabled block><Text>Hello Stranger!</Text></Button>
-    }
-
-
     return (
       <Container style={styles.container}>
         <Header>

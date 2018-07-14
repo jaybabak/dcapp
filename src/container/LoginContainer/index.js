@@ -8,20 +8,33 @@ import Login from "../../stories/screens/Login";
 export interface Props {
 	navigation: any,
 	loginForm: any,
+	mainStore: any,
 }
 export interface State {}
 
-@inject("loginForm")
+@inject("loginForm", "mainStore")
 @observer
 export default class LoginContainer extends React.Component<Props, State> {
 	emailInput: any;
 	pwdinput: any;
 	login() {
+
+
+		const loginStore = this.props.loginForm;
+		const home = this.props.mainStore;
+
+		console.log(home);
+
+		loginStore.submitForm(this.props.navigation, home);
+
 		// this.props.loginForm.validateForm();
-		// if (this.props.loginForm.isValid) {
-		// 	this.props.loginForm.clearStore();
-			this.props.navigation.navigate("Drawer");
-		// } else {
+
+		// if (yay) {
+			// console.log(this.props.loginForm.isValid);
+			// this.props.loginForm.clearStore();
+			// this.props.navigation.navigate("Drawer");
+		// }
+		// else {
 			// Toast.show({
 			// 	text: "Enter valid email & password!",
 			// 	duration: 2000,

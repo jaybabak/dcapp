@@ -1,3 +1,5 @@
+import { AsyncStorage } from "react-native"
+
 class Auth {
 
   /**
@@ -6,7 +8,7 @@ class Auth {
    * @param {string} token
    */
   static authenticateUser(token) {
-    localStorage.setItem('token', token);
+     AsyncStorage.setItem('token', token);
   }
 
   /**
@@ -15,7 +17,7 @@ class Auth {
    * @returns {boolean}
    */
   static isUserAuthenticated() {
-    return localStorage.getItem('token') !== null;
+    return  AsyncStorage.getItem('token') !== null;
   }
 
   /**
@@ -23,7 +25,7 @@ class Auth {
    *
    */
   static deauthenticateUser() {
-    localStorage.removeItem('token');
+     AsyncStorage.removeItem('token');
   }
 
   /**
@@ -33,7 +35,7 @@ class Auth {
    */
 
   static getToken() {
-    return localStorage.getItem('token');
+    return AsyncStorage.getItem('token');
   }
 
 }

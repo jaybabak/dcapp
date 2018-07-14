@@ -40,7 +40,7 @@ class UserGreeting extends React.Component<Props, State> {
 
     return (
       <ListItem itemDivider>
-        <Text style={styles.name}><H1>{home.getName}</H1></Text>
+        <Text style={styles.name}><H1>Welcome {home.getName}!</H1></Text>
       </ListItem>
     );
   }

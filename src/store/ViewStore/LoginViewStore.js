@@ -1,16 +1,33 @@
 import { observable, action } from "mobx";
+import { observer, inject } from "mobx-react/native";
+import { View, Alert, TextInput, AsyncStorage } from 'react-native';
+import { Item, Input, Icon, Form, Toast } from "native-base";
+import Auth from '../../modules/Auth';
+
 
 class LoginStore {
+
   @observable email = "";
   @observable password = "";
   @observable isValid = false;
   @observable emailError = "";
+  @observable errors = {};
   @observable passwordError = "";
+  @observable successMessage = "";
+  @observable storedMessage = AsyncStorage.getItem('successMessage');
+
+  if (storedMessage) {
+    successMessage = storedMessage;
+    AsyncStorage.removeItem('successMessage');
+  }
+
+
 
   @action
   emailOnChange(id) {
     this.email = id;
     this.validateEmail();
+    // console.log(this.email);
   }
 
   @action
@@ -26,6 +43,7 @@ class LoginStore {
   passwordOnChange(pwd) {
     this.password = pwd;
     this.validatePassword();
+    // console.log(this.password);
   }
 
   @action
@@ -50,6 +68,90 @@ class LoginStore {
     }
   }
 
+
+  @action
+  submitForm = (navi, home) => {
+
+
+    const userEmail = encodeURIComponent(this.email);
+    const userPassword = encodeURIComponent(this.password);
+    const formData = `&email=${userEmail}&password=${userPassword}`;
+
+    // console.log('YUP');
+
+    const postData = (url = ``, data = {}) => {
+      // Default options are marked with *
+      return fetch(url, {
+            method: "POST", // *GET, POST, PUT, DELETE, etc.
+            // mode: "cors", // no-cors, cors, *same-origin
+            // cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+            // credentials: "same-origin", // include, same-origin, *omit
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+                // "Content-Type": "application/x-www-form-urlencoded",
+            },
+            // redirect: "follow", // manual, *follow, error
+            // referrer: "no-referrer", // no-referrer, *client
+            body: formData, // body data type must match "Content-Type" header
+        })
+      .then(response => response.json()) // parses response to JSON
+      .catch(error => console.error(`Fetch Error =\n`, error));
+    };
+
+    postData(`http://localhost:5000/auth/login`, '')
+    .then((data) => {
+      console.log(data);
+
+      if(data.success == true){
+
+        home.setName(data.user.name);
+
+        Auth.authenticateUser(data.token);
+
+        Alert.alert(
+          'Logged in successfully!',
+          'Welcome ' + home.getName,
+          [
+            {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+            {text: 'OK', onPress: () => {
+              // console.log(text.target);
+            }},
+          ],
+            { cancelable: false }
+        )
+
+        // Toast.show({
+  			//   text: 'Logged in successfully! Welcome ' + this.name+ '!',
+  		  // })
+
+        this.clearStore();
+
+
+        // home.setName(data.user.name);
+
+        navi.navigate("Home");
+
+
+
+
+
+      //   // this.isValid = false;
+    }else{
+
+      // console.log(AsyncStorage.getItem('token'));
+
+      Toast.show({
+        text: 'Oops! Incorrect username or password.',
+        position: 'bottom'
+      })
+    }
+    }) // JSON from `response.json()` call
+    .catch(error => console.error(error));
+
+
+
+  }
+
   @action
   clearStore() {
     this.email = "";
@@ -57,6 +159,7 @@ class LoginStore {
     this.emailError = "";
     this.password = "";
     this.passwordError = "";
+    this.errors = "";
   }
 }
 
