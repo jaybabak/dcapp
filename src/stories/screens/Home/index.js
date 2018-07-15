@@ -37,12 +37,14 @@ class Home extends React.Component<Props, State> {
     // console.log
     const home = this.props.mainStore;
 
-		// console.log(home.userAuthenticated);
+		console.log(home.getToken);
 
   }
 
   render() {
 
+    const home = this.props.mainStore;
+    console.log(home.userAuthenticated);
     var isUserLoggedIn = null;
 
     if(this.props.navigation.state.params){
@@ -81,27 +83,38 @@ class Home extends React.Component<Props, State> {
         </Header>
         <Content>
           <UserGreeting/>
-          <List>
-            {this.props.list.map((item, userType) => (
-              <ListItem
-                key={userType}
-                onPress={() => {
-                  const consumer = 0;
-                  const merchant = 1;
-                  if(userType == consumer){
-                    //consumer
-                    this.props.navigation.navigate("SignUp")
-                  }else if(userType == merchant){
-                    //business
-                    this.props.navigation.navigate("SignUp");
-                  }
+          { home.authenticated ? (
+            <Text>Welcome!!!!</Text>
+          ) : (
+            <List>
+              {this.props.list.map((item, userType) => (
+                <ListItem
+                  key={userType}
+                  onPress={() => {
+                    const consumer = 0;
+                    const merchant = 1;
+                    if(userType == consumer){
+                      //consumer
+                      this.props.navigation.navigate("SignUp", {
+                        title: 'Register!',
+                        type: 'consumer'
+                      })
+                    }else if(userType == merchant){
+                      //business
+                      this.props.navigation.navigate("SignUp", {
+                        title: 'Register!',
+                        type: 'merchant'
+                      });
+                    }
 
-              }}
-              >
-                <Text>{item}</Text>
-              </ListItem>
-            ))}
-          </List>
+                }}
+                >
+                  <Text>{item}</Text>
+                </ListItem>
+              ))}
+            </List>
+          )
+          }
         </Content>
       </Container>
     );

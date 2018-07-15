@@ -24,7 +24,16 @@ class Login extends React.Component<Props, State> {
 
 		//CLEAR LOCAL STORED TOKEN WHEN ARRIVING ON LOGIN SCREEN
 		// home.deauthenticateUser();
-	
+
+
+	}
+
+	signUpUser(){
+
+		this.props.navigation.navigate("SignUp", {
+			title: 'Register as a User',
+			type: 'consumer'
+		})
 
 	}
 
@@ -46,8 +55,20 @@ class Login extends React.Component<Props, State> {
 				<Content>
 					{this.props.loginForm}
 					<View padder>
-						<Button block onPress={() => this.props.onLogin()}>
-							<Text>Get Started!</Text>
+						<Button style={{ marginTop: 12 }} block onPress={() => this.props.onLogin()}>
+							<Text>Login</Text>
+						</Button>
+						<Button style={{ marginTop: 14 }} block danger onPress={() => 		this.props.navigation.navigate("SignUp", {
+									title: 'User Registration',
+									type: 'consumer'
+								})}>
+							<Text>Sign Up</Text>
+						</Button>
+						<Button style={{ marginTop: 14 }} block warning onPress={() =>         this.props.navigation.navigate("SignUp", {
+											title: 'Provider Registration',
+											type: 'merchant'
+										})}>
+							<Text>Sign Up As A Provider</Text>
 						</Button>
 					</View>
 				</Content>

@@ -20,6 +20,7 @@ class SignUp extends React.Component<Props, State> {
 
 	render() {
 		const param = this.props.navigation.state.params;
+		console.log(param);
 
 		const signMeUp = this.props.signUpStore;
 

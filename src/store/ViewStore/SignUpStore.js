@@ -72,7 +72,8 @@ class SignUpStore {
         this.isValid = true;
         // this.clearStore();
         console.log(this.isValid);
-        navi.navigate("Home");
+        navi.navigate("Login");
+        this.clearStore();
         // this.isValid = false;
       }
 

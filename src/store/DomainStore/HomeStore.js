@@ -26,20 +26,40 @@ class HomeStore {
 
   @action
   toggleAuthenticateStatus() {
-    this.authenticated = Auth.isUserAuthenticated();
+    // console.log(this.authenticated);
+    this.authenticated = this.userAuthenticated;
+  }
+
+  @action
+  authenticateUser(token) {
+    AsyncStorage.setItem('token', token).then((response) => {
+
+      // console.log(response);
+
+    });
+
   }
 
   @action
   deauthenticateUser() {
-    Auth.deauthenticateUser();
+    AsyncStorage.removeItem('token');
   }
 
   @computed get userAuthenticated() {
+
+    // console.log(AsyncStorage.getItem('token'));
+
     return  AsyncStorage.getItem('token') !== null;
   }
 
   @computed get getToken() {
-    return  AsyncStorage.getItem('token');
+    AsyncStorage.getItem('token').then((response) => {
+
+      // console.log(response);
+      return response
+
+
+    });
   }
 
 }

@@ -4,6 +4,7 @@ import { Item, Input, Icon, Form, Toast } from "native-base";
 import { observer, inject } from "mobx-react/native";
 
 import Login from "../../stories/screens/Login";
+// import data from "./data";
 
 export interface Props {
 	navigation: any,
@@ -18,26 +19,22 @@ export default class LoginContainer extends React.Component<Props, State> {
 	emailInput: any;
 	pwdinput: any;
 	login() {
-
-
 		const loginStore = this.props.loginForm;
 		const home = this.props.mainStore;
 
-
-
-		console.log(home.getToken);
-
-		// home.deauthenticateUser();
+		// console.log(home.getToken);
+		console.log(this.props.mainStore.authenticated);
+		// this.props.mainStore.toggleAuthenticateStatus();
 
 		loginStore.submitForm(this.props.navigation, home);
+		// this.props.navigation.navigate("Home");
 
-		// this.props.loginForm.validateForm();
 	}
 
 	componentWillMount(){
-
-
+				//  this.props.mainStore.toggleAuthenticateStatus();
 		 this.props.mainStore.deauthenticateUser();
+		 console.log(this.props.mainStore.authenticated);
 
 	}
 

@@ -107,8 +107,8 @@ class LoginStore {
         homeStore.setName(data.user.name);
 
 
-        Auth.authenticateUser(data.token);
-        homeStore.toggleAuthenticateStatus();
+        homeStore.authenticateUser(data.token);
+        console.log(homeStore.toggleAuthenticateStatus());
         console.log(homeStore.authenticated);
 
         Alert.alert(
@@ -149,7 +149,10 @@ class LoginStore {
       })
     }
     }) // JSON from `response.json()` call
-    .catch(error => console.error(error));
+    .catch(error => Toast.show({
+          text: 'Sorry, something is not right!',
+          position: 'bottom'
+        }));
 
 
 

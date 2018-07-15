@@ -84,7 +84,7 @@ class ConsumerGreeting extends React.Component<Props, State> {
 							style={styles.textField}
 							onChangeText={event => signer.nameChange(event)}
 							value={signer.name}
-							onBlur={signer.submitForm}
+							// onBlur={signer.submitForm}
 						/>
 					</Item>
 					<Item floatingLabel>
@@ -93,7 +93,7 @@ class ConsumerGreeting extends React.Component<Props, State> {
 							style={styles.textField}
 							onChangeText={event => signer.emailChange(event)}
 							value={signer.email}
-							onBlur={signer.submitForm}
+							// onBlur={signer.submitForm}
 						/>
 					</Item>
 					<Item floatingLabel last>
@@ -103,10 +103,10 @@ class ConsumerGreeting extends React.Component<Props, State> {
 							onChangeText={event => signer.pwdChange(event)}
 							secureTextEntry={true}
 							value={signer.password}
-							onBlur={signer.submitForm}
+							// onBlur={signer.submitForm}
 						/>
 					</Item>
-					<Button onPress={this.confirmSignUp} style={styles.submitBtn} color="red" block ><Text>Sign Up!</Text></Button>
+					<Button onPress={this.confirmSignUp} style={styles.submitBtn} color="red" block ><Text>Register!</Text></Button>
 				</Form>
 			</Container>
 		);
