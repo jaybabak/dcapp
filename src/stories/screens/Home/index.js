@@ -12,7 +12,8 @@ import {
   Right,
   List,
   ListItem,
-  Subtitle
+  Subtitle,
+  H3
 } from "native-base";
 import { observer, inject } from "mobx-react/native";
 
@@ -36,8 +37,6 @@ class Home extends React.Component<Props, State> {
 
     // console.log
     const home = this.props.mainStore;
-
-		console.log(home.getToken);
 
   }
 
@@ -84,7 +83,9 @@ class Home extends React.Component<Props, State> {
         <Content>
           <UserGreeting/>
           { home.authenticated ? (
-            <Text>Welcome!!!!</Text>
+            <ListItem itemDivider>
+              <Text>You are now logged in...!</Text>
+            </ListItem>
           ) : (
             <List>
               {this.props.list.map((item, userType) => (
