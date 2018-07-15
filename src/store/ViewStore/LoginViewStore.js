@@ -95,12 +95,14 @@ class LoginStore {
             body: formData, // body data type must match "Content-Type" header
         })
       .then(response => response.json()) // parses response to JSON
-      .catch(error => console.error(`Fetch Error =\n`, error));
+      .catch(error => console.log(`Fetch Error =\n`, error));
     };
 
     postData(`http://localhost:5000/auth/login`, '')
     .then((data) => {
       console.log(data);
+
+
 
       if(data.success == true){
 
@@ -108,8 +110,8 @@ class LoginStore {
 
 
         homeStore.authenticateUser(data.token);
-        console.log(homeStore.toggleAuthenticateStatus());
-        console.log(homeStore.authenticated);
+        homeStore.toggleAuthenticateStatus();
+        // console.log(homeStore.authenticated);
 
         Alert.alert(
           'Logged in successfully!',
@@ -150,8 +152,10 @@ class LoginStore {
     }
     }) // JSON from `response.json()` call
     .catch(error => Toast.show({
-          text: 'Sorry, something is not right!',
-          position: 'bottom'
+          text: 'Something is not right, check connection!',
+          position: 'bottom',
+          duration: 3200,
+          textStyle: { color: "#5ECFE5" }
         }));
 
 

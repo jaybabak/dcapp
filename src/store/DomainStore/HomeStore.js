@@ -26,15 +26,12 @@ class HomeStore {
 
   @action
   toggleAuthenticateStatus() {
-    // console.log(this.authenticated);
     this.authenticated = this.userAuthenticated;
   }
 
   @action
   authenticateUser(token) {
     AsyncStorage.setItem('token', token).then((response) => {
-
-      // console.log(response);
 
     });
 
@@ -43,22 +40,16 @@ class HomeStore {
   @action
   deauthenticateUser() {
     AsyncStorage.removeItem('token');
+    this.authenticated = false;
   }
 
   @computed get userAuthenticated() {
-
-    // console.log(AsyncStorage.getItem('token'));
-
     return  AsyncStorage.getItem('token') !== null;
   }
 
   @computed get getToken() {
     AsyncStorage.getItem('token').then((response) => {
-
-      // console.log(response);
       return response
-
-
     });
   }
 

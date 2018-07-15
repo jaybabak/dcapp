@@ -22,20 +22,11 @@ export default class LoginContainer extends React.Component<Props, State> {
 		const loginStore = this.props.loginForm;
 		const home = this.props.mainStore;
 
-		// console.log(home.getToken);
-		console.log(this.props.mainStore.authenticated);
-		// this.props.mainStore.toggleAuthenticateStatus();
-
 		loginStore.submitForm(this.props.navigation, home);
-		// this.props.navigation.navigate("Home");
-
 	}
 
 	componentWillMount(){
-				//  this.props.mainStore.toggleAuthenticateStatus();
 		 this.props.mainStore.deauthenticateUser();
-		 console.log(this.props.mainStore.authenticated);
-
 	}
 
 	render() {
