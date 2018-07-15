@@ -12,7 +12,7 @@ export interface Props {
 export interface State {
 }
 
-@inject("mainStore")
+@inject("mainStore", "loginForm")
 @observer
 class Login extends React.Component<Props, State> {
 
@@ -20,9 +20,11 @@ class Login extends React.Component<Props, State> {
 	componentDidMount(){
 
 		const home = this.props.mainStore;
+		const loginStore = this.props.loginForm;
 
 		//CLEAR LOCAL STORED TOKEN WHEN ARRIVING ON LOGIN SCREEN
 		// home.deauthenticateUser();
+	
 
 	}
 
