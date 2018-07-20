@@ -70,6 +70,10 @@ class Login extends React.Component<Props, State> {
 										})}>
 							<Text>Sign Up As A Provider</Text>
 						</Button>
+						<Button onPress={() => this.props.navigation.navigate("Home")} style={{alignSelf: "center"}} iconLeft transparent primary>
+							<Icon name='home' />
+							<Text>Skip ></Text>
+						</Button>
 					</View>
 				</Content>
 				<Footer style={{ backgroundColor: "#F8F8F8" }}>

@@ -18,6 +18,7 @@ import {
 import { observer, inject } from "mobx-react/native";
 
 import UserGreeting from "../UserGreeting/";
+import Dashboard from "./components/Dashboard";
 
 import styles from "./styles";
 export interface Props {
@@ -83,9 +84,10 @@ class Home extends React.Component<Props, State> {
         <Content>
           <UserGreeting/>
           { home.authenticated ? (
-            <ListItem itemDivider>
-              <Text>You are now logged in...!</Text>
-            </ListItem>
+            // <ListItem itemDivider>
+            //   <Text>You are now logged in...!</Text>
+            // </ListItem>
+          <Dashboard/>
           ) : (
             <List>
               {this.props.list.map((item, userType) => (

@@ -41,8 +41,9 @@ class Dashboard extends React.Component<Props, State> {
 
     return (
       <Container style={styles.container}>
-        <Content>
-          <Text>Authenticated Dashboard</Text>
+
+        <Content padder>
+          <Text>Authenticated Dashboard: You are viewing seceret content.</Text>
         </Content>
       </Container>
     );
