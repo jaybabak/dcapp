@@ -25,6 +25,15 @@ const styles: any = StyleSheet.create({
 		marginRight: 10,
 		marginBottom: 15,
 	},
+	centerMe: {
+		flex: 1,
+		flexDirection: 'column',
+		justifyContent: 'center',
+		alignItems: 'center',
+	},
+	button: {
+		marginTop: 14,
+	}
 
 });
 export default styles;

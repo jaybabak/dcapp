@@ -1,5 +1,5 @@
 import * as React from "react";
-import { View } from "react-native";
+import { View, ActivityIndicator } from "react-native";
 import { Container, Header, Title, Content, Text, Button, Icon, Left, Right, Body, Toast } from "native-base";
 import { observer, inject } from "mobx-react/native";
 
@@ -48,6 +48,13 @@ class BlankPage extends React.Component<Props, State> {
 		//
 		// }), 3000);
 
+
+
+	}
+
+	componentDidMount(){
+		let that = this;
+		setTimeout(function(){that.setState({isReady: true})}, 2500);
 	}
 
 	render() {
@@ -55,21 +62,20 @@ class BlankPage extends React.Component<Props, State> {
 		const param = this.props.navigation.state.params;
 		const countz = this.props.countersStore;
 
-		{console.log(countz);}
-
-		let that = this;
- 		setTimeout(function(){that.setState({isReady: true})}, 2500);
-
 		const CountBtn = (
 			<View>
 			{/* <Text>Total Number Of Count: {countz.getTotal()}</Text> */}
-			<Button onPress={() => countz.increase()} color="red" rounded><Text>Increase +</Text></Button>
-			<Button onPress={() => countz.decrease()} rounded><Text>Decrease -</Text></Button>
+			<Button  style={styles.button} block onPress={() => countz.increase()} color="red" rounded><Text>Increase +</Text></Button>
+			<Button style={styles.button} padder block onPress={() => countz.decrease()} rounded><Text>Decrease -</Text></Button>
 			</View>
 		);
 
 		if (!this.state.isReady) {
-			return <Expo.AppLoading/>;
+			return (
+				<View style={styles.centerMe}>
+					<ActivityIndicator size="large" color="#435ccc"/>
+				</View>
+			);
 		}
 		if(this.state.isReady){
 
