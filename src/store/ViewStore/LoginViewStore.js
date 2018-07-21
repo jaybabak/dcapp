@@ -1,6 +1,6 @@
 import { observable, action } from "mobx";
 import { observer, inject } from "mobx-react/native";
-import { View, Alert, TextInput, AsyncStorage } from 'react-native';
+import { View, Alert, TextInput, AsyncStorage, Keyboard } from 'react-native';
 import { Item, Input, Icon, Form, Toast } from "native-base";
 import Auth from '../../modules/Auth';
 
@@ -98,7 +98,7 @@ class LoginStore {
       .catch(error => console.log(`Fetch Error =\n`, error));
     };
 
-    postData(`http://localhost:5000/auth/login`, '')
+    postData(`https://dcapp-backend.herokuapp.com/auth/login`, '')
     .then((data) => {
       console.log(data);
 
@@ -107,8 +107,6 @@ class LoginStore {
       if(data.success == true){
 
         homeStore.setName(data.user.name);
-
-
         homeStore.authenticateUser(data.token);
         homeStore.toggleAuthenticateStatus();
         // console.log(homeStore.authenticated);
@@ -135,6 +133,7 @@ class LoginStore {
         // home.setName(data.user.name);
 
         navi.navigate("Home");
+
 
 
 

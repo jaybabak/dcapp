@@ -41,6 +41,7 @@ class HomeStore {
   deauthenticateUser() {
     AsyncStorage.removeItem('token');
     this.authenticated = false;
+    this.clearStore();
   }
 
   @computed get userAuthenticated() {
@@ -51,6 +52,15 @@ class HomeStore {
     AsyncStorage.getItem('token').then((response) => {
       return response
     });
+  }
+
+  @action
+  clearStore() {
+    this.name = "@user";
+    this.authenticated = false;
+    this.items = [];
+    this.hasErrored = false;
+    this.isLoading = true;
   }
 
 }

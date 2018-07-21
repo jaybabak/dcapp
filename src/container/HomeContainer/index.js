@@ -1,6 +1,7 @@
 // @flow
 import * as React from "react";
 import { observer, inject } from "mobx-react/native";
+import { Keyboard } from "react-native";
 
 import Home from "../../stories/screens/Home";
 import data from "./data";
@@ -22,6 +23,7 @@ export default class HomeContainer extends React.Component<Props, State> {
 
 		const home = this.props.mainStore;
 
+		Keyboard.dismiss();
 		// home.toggleAuthenticateStatus()
 		console.log(home.getToken);
 

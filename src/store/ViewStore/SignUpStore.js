@@ -64,7 +64,7 @@ class SignUpStore {
       .catch(error => console.error(`Fetch Error =\n`, error));
     };
 
-    postData(`http://localhost:5000/auth/signup`, '')
+    postData(`https://dcapp-backend.herokuapp.com/auth/signup`, '')
     .then((data) => {
       console.log(data);
 
