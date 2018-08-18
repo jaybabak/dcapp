@@ -98,7 +98,8 @@ class LoginStore {
       .catch(error => console.log(`Fetch Error =\n`, error));
     };
 
-    postData(`https://dcapp-backend.herokuapp.com/auth/login`, '')
+    // postData(`https://dcapp-backend.herokuapp.com/auth/login`, '') ///staging domain backend
+    postData(`http://localhost:5000/auth/login`, '')  //local dev backend
     .then((data) => {
       console.log(data);
 
@@ -151,7 +152,7 @@ class LoginStore {
     }
     }) // JSON from `response.json()` call
     .catch(error => Toast.show({
-          text: 'Something is not right, check connection!',
+          text: 'Something is not right..check your connection!',
           position: 'bottom',
           duration: 3200,
           textStyle: { color: "#5ECFE5" }
