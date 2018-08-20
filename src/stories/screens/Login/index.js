@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Image, Platform } from "react-native";
+import { Alert, Image, Platform } from "react-native";
 import { Container, Content, Header, Body, Title, Button, Text, View, Icon, Footer } from "native-base";
 import { observer, inject } from "mobx-react/native";
 //import styles from "./styles";
@@ -37,6 +37,51 @@ class Login extends React.Component<Props, State> {
 
 	}
 
+	facebookLogin = () => {
+
+		const home = this.props.mainStore;
+
+		const logIn = async () => {
+	  const { type, token } = await Expo.Facebook.logInWithReadPermissionsAsync('192651401441339', {
+		      permissions: ['public_profile'],
+		    });
+		  if (type === 'success') {
+		    // Get the user's name using Facebook's Graph API
+		    const response = await fetch(
+		      `https://graph.facebook.com/me?access_token=${token}&fields=name,id,email,picture`);
+
+				const { picture, name, id, email } = await response.json();
+
+				// console.log(theUser);
+
+
+
+				home.setName(name);
+				home.toggleAuthenticateStatus();
+				home.authenticateUser(id);
+				console.log(home);
+
+		    Alert.alert(
+		      'Logged in!',
+		      `Hi ${name}!`,
+		    );
+
+				this.props.navigation.navigate("Home");
+
+
+		  }
+		}
+
+		if(!home.userAuthenticated){
+			this.props.navigation.navigate("Home");
+		}
+
+		logIn()
+
+
+	}
+
+
 
 	render() {
 		return (
@@ -58,18 +103,24 @@ class Login extends React.Component<Props, State> {
 						<Button style={{ marginTop: 12 }} block onPress={() => this.props.onLogin()}>
 							<Text>Login</Text>
 						</Button>
+
+						<Button style={{ marginTop: 14 }} block onPress={() => this.facebookLogin()}>
+							<Text>Login with Facebook</Text>
+						</Button>
+
 						<Button style={{ marginTop: 14 }} block danger onPress={() => 		this.props.navigation.navigate("SignUp", {
 									title: 'User Registration',
 									type: 'consumer'
 								})}>
 							<Text>Sign Up</Text>
 						</Button>
-						<Button style={{ marginTop: 14 }} block warning onPress={() =>         this.props.navigation.navigate("SignUp", {
+
+						{/* <Button style={{ marginTop: 14 }} block warning onPress={() =>         this.props.navigation.navigate("SignUp", {
 											title: 'Provider Registration',
 											type: 'merchant'
 										})}>
 							<Text>Sign Up As A Provider</Text>
-						</Button>
+						</Button> */}
 						<Button onPress={() => this.props.navigation.navigate("Home")} style={{alignSelf: "center"}} iconLeft transparent primary>
 							<Icon name='home' />
 							<Text>Skip ></Text>
