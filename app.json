@@ -9,12 +9,33 @@
     "orientation": "portrait",
     "primaryColor": "#cccccc",
     "packagerOpts": {
-      "assetExts": ["ttf"]
+      "assetExts": [
+        "ttf"
+      ]
     },
     "androidStatusBarColor": "#334393",
     "androidStatusBar": {
       "barStyle": "light-content",
       "backgroundColor": "#334393"
+    },
+    "name": "ReactNativeSeed",
+    "version": "1.1.0",
+    "isDetached": true,
+    "detach": {
+      "scheme": "expb7df6fa33e6d4ee79525826aea0e829f",
+      "iosExpoViewUrl": "https://s3.amazonaws.com/exp-exponent-view-code/ios-v2.2.1-sdk24.0.0-36ff2264-629d-44df-a819-8c982454e5e8.tar.gz",
+      "androidExpoViewUrl": "https://s3.amazonaws.com/exp-exponent-view-code/android-v2.2.0-sdk24.0.0-16620828-4df4-4e2d-b0af-5dc1352b82cb.tar.gz"
+    },
+    "scheme": "expb7df6fa33e6d4ee79525826aea0e829f",
+    "ios": {
+      "bundleIdentifier": "dcapp",
+      "publishBundlePath": "ios/reactnativeseed/Supporting/shell-app.bundle",
+      "publishManifestPath": "ios/reactnativeseed/Supporting/shell-app-manifest.json"
+    },
+    "android": {
+      "package": "com.dcapp.dream",
+      "publishBundlePath": "android/app/src/main/assets/shell-app.bundle",
+      "publishManifestPath": "android/app/src/main/assets/shell-app-manifest.json"
     }
   }
 }
