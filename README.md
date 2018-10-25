@@ -14,25 +14,23 @@ On the command prompt run the following commands
 
 $ cd react-native-project
 
+```
 $ npm install
   or
-  yarn
+  yarn install
 ```
 
-### Run on iOS
+### Run IOS or ANDROID
+	* Opt #1:
+		* react-native run-ios
+	* Opt #2:
+		* react-native run-android
 
-  * Opt #1:
-		*	Run `npm start` in your terminal
-		*	Scan the QR code in your Expo app
-	*	Opt #2:
-		*	Run `npm run ios` in your terminal
-
-### Run on Android
-
-  * Opt #1:
-		*	Run `npm start` in your terminal
-		*	Scan the QR code in your Expo app
-	*	Opt #2:
-		*	Run `npm run android` in your terminal
-
-
+	* ALSO Need To:
+		* run database server locally: cd into server directory type command:
+      -> ```sudo mongod```
+      -> change file @ /server/models/index.js
+		* run backend-express server locally
+      -> $ npm start
+      -> change LoginViewStore.js file @ /app/src/store/ViewStore/LoginViewStore.js to use localserver instead of deployed dev server (heroku)
+      -> change SignUpStore.js file @ /app/src/store/ViewStore/SignUpStore.js to use localserver instead of deployed dev server (heroku)

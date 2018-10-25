@@ -52,14 +52,10 @@ class Login extends React.Component<Props, State> {
 
 				const { picture, name, id, email } = await response.json();
 
-				// console.log(theUser);
-
-
-
 				home.setName(name);
 				home.toggleAuthenticateStatus();
 				home.authenticateUser(id);
-				console.log(home);
+				console.log(id, email, picture, name);
 
 		    Alert.alert(
 		      'Logged in!',

@@ -36,7 +36,6 @@ class UserGreeting extends React.Component<Props, State> {
   render() {
 
     const home = this.props.mainStore;
-    // console.log(home);
 
     return (
       <ListItem itemDivider>

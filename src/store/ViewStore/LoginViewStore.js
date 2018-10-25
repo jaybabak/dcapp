@@ -72,12 +72,15 @@ class LoginStore {
   @action
   submitForm = (navi, homeStore) => {
 
+    /* PARAMETERS
+    **
+    * navi -> the navigation paramater provided as property so that user can be redirected to homepage/dashboard after
+    * homeStore -> passing in a property of the HomeStore so that we can set the name etc.. globally
+    */
 
     const userEmail = encodeURIComponent(this.email);
     const userPassword = encodeURIComponent(this.password);
     const formData = `&email=${userEmail}&password=${userPassword}`;
-
-    // console.log('YUP');
 
     const postData = (url = ``, data = {}) => {
       // Default options are marked with *
@@ -103,8 +106,6 @@ class LoginStore {
     .then((data) => {
       console.log(data);
 
-
-
       if(data.success == true){
 
         homeStore.setName(data.user.name);
@@ -124,27 +125,12 @@ class LoginStore {
             { cancelable: false }
         )
 
-        // Toast.show({
-  			//   text: 'Logged in successfully! Welcome ' + this.name+ '!',
-  		  // })
-
         this.clearStore();
 
-
-        // home.setName(data.user.name);
-
         navi.navigate("Home");
-
-
-
-
-
-
       //   // this.isValid = false;
     }else{
-
       // console.log(AsyncStorage.getItem('token'));
-
       Toast.show({
         text: 'Oops! Incorrect username or password.',
         position: 'bottom'
@@ -157,9 +143,6 @@ class LoginStore {
           duration: 3200,
           textStyle: { color: "#5ECFE5" }
         }));
-
-
-
   }
 
   @action

@@ -25,7 +25,7 @@ export default class HomeContainer extends React.Component<Props, State> {
 
 		Keyboard.dismiss();
 		// home.toggleAuthenticateStatus()
-		console.log(home.getToken);
+		// console.log(home.getToken);
 
 	}
 
