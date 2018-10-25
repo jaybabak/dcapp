@@ -18,7 +18,7 @@ import {
 import { observer, inject } from "mobx-react/native";
 
 import UserGreeting from "../UserGreeting/";
-import Dashboard from "./components/Dashboard";
+import Dashboard from "./components/dashboard";
 
 import styles from "./styles";
 export interface Props {

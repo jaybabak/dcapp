@@ -55,6 +55,7 @@ class Login extends React.Component<Props, State> {
 				home.setName(name);
 				home.toggleAuthenticateStatus();
 				home.authenticateUser(id);
+				
 				console.log(id, email, picture, name);
 
 		    Alert.alert(
