@@ -27,7 +27,6 @@ class LoginStore {
   emailOnChange(id) {
     this.email = id;
     this.validateEmail();
-    // console.log(this.email);
   }
 
   @action
@@ -104,14 +103,13 @@ class LoginStore {
     // postData(`https://dcapp-backend.herokuapp.com/auth/login`, '') ///staging domain backend
     postData(`http://localhost:5000/auth/login`, '')  //local dev backend
     .then((data) => {
-      console.log(data);
+      // console.log(data);
 
       if(data.success == true){
 
         homeStore.setName(data.user.name);
         homeStore.authenticateUser(data.token);
         homeStore.toggleAuthenticateStatus();
-        // console.log(homeStore.authenticated);
 
         Alert.alert(
           'Logged in successfully!',
@@ -133,7 +131,11 @@ class LoginStore {
       // console.log(AsyncStorage.getItem('token'));
       Toast.show({
         text: 'Oops! Incorrect username or password.',
-        position: 'bottom'
+        position: 'bottom',
+        buttonText: "Okay",
+        duration: 5000,
+        buttonTextStyle: { color: "#FFFFFF" },
+        buttonStyle: { backgroundColor: "#2CACFB" }
       })
     }
     }) // JSON from `response.json()` call
@@ -153,6 +155,10 @@ class LoginStore {
     this.password = "";
     this.passwordError = "";
     this.errors = "";
+  }
+
+  autorun = () => {
+    console.log(this);
   }
 }
 

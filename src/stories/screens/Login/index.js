@@ -2,6 +2,7 @@ import * as React from "react";
 import { Alert, Image, Platform } from "react-native";
 import { Container, Content, Header, Body, Title, Button, Text, View, Icon, Footer } from "native-base";
 import { observer, inject } from "mobx-react/native";
+import Expo from 'expo';
 //import styles from "./styles";
 export interface Props {
 	loginForm: any, //Declaring all the different properties being passed to it - 'any' used for data
@@ -22,8 +23,13 @@ class Login extends React.Component<Props, State> {
 		const home = this.props.mainStore;
 		const loginStore = this.props.loginForm;
 
+		console.log(home.getToken);
+
 		//CLEAR LOCAL STORED TOKEN WHEN ARRIVING ON LOGIN SCREEN
 		// home.deauthenticateUser();
+		if(!home.userAuthenticated){
+			this.props.navigation.navigate("Home");
+		}
 
 
 	}
@@ -52,11 +58,14 @@ class Login extends React.Component<Props, State> {
 
 				const { picture, name, id, email } = await response.json();
 
+				// console.log(picture.data.url);
+
 				home.setName(name);
+				home.setProfileImage(picture.data.url);
 				home.toggleAuthenticateStatus();
 				home.authenticateUser(id);
-				
-				console.log(id, email, picture, name);
+
+				// console.log(id, email, picture, name);
 
 		    Alert.alert(
 		      'Logged in!',
@@ -78,7 +87,49 @@ class Login extends React.Component<Props, State> {
 
 	}
 
+	googleLogin = () => {
 
+		const home = this.props.mainStore;
+
+		const logInGoogle = async () => {
+			try {
+				const result = await Expo.Google.logInAsync({
+					androidClientId: '1066032544921-4orn97ko4aodn1hafa8lruu4mj92dpm8.apps.googleusercontent.com',
+					iosClientId: '1066032544921-6eb51lcnnrpbbo9dfvrp19fp815dfgdf.apps.googleusercontent.com',
+					scopes: ['profile', 'email'],
+				});
+
+				if (result.type === 'success') {
+					console.log(result);
+
+					home.setName(result.user.name);
+					home.setProfileImage(result.user.photoUrl);
+					home.toggleAuthenticateStatus();
+					home.authenticateUser(result.accessToken);
+
+					Alert.alert(
+						'Logged in!',
+						`Hi ${result.user.name}!`,
+					);
+
+					this.props.navigation.navigate("Home");
+
+					return result.accessToken;
+				} else {
+					return {cancelled: true};
+				}
+			} catch(e) {
+				return {error: true};
+			}
+		}
+
+		if(!home.userAuthenticated){
+			this.props.navigation.navigate("Home");
+		}
+
+		logInGoogle();
+
+	}
 
 	render() {
 		return (
@@ -103,6 +154,9 @@ class Login extends React.Component<Props, State> {
 
 						<Button style={{ marginTop: 14 }} block onPress={() => this.facebookLogin()}>
 							<Text>Login with Facebook</Text>
+						</Button>
+						<Button style={{ marginTop: 14 }} block warning onPress={() => this.googleLogin()}>
+							<Text>Login with Google</Text>
 						</Button>
 
 						<Button style={{ marginTop: 14 }} block danger onPress={() => 		this.props.navigation.navigate("SignUp", {

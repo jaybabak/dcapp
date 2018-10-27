@@ -7,6 +7,7 @@ class HomeStore {
   @observable isLoading = true;
   @observable items = [];
   @observable name = '@user';
+  @observable avatar = 'http://phot0x.com/sites/default/files/styles/promo_image/public/2018-08/2Artboard%201%20copy%204%40lmood.png?itok=U_BVx-0d';
   @observable authenticated = false;
 
   @action
@@ -18,6 +19,15 @@ class HomeStore {
   @action
   setName(userName) {
     this.name = userName;
+  }
+
+  @action
+  setProfileImage(url) {
+    this.avatar = url;
+  }
+
+  @computed get getProfileImage(){
+    return this.avatar;
   }
 
   @computed get getName(){

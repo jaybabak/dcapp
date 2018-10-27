@@ -15,17 +15,6 @@ export interface State {}
 @observer
 class ConsumerGreeting extends React.Component<Props, State> {
 
-// 	constructor(props, context) {
-// 	super(props, context);
-//
-// 	// set the initial component state
-// 	this.state = {
-// 		formValid: false,
-// 	};
-//
-// }
-
-
 	confirmSignUp = () => {
 
 		const signers = this.props.signUpStore;
@@ -48,27 +37,7 @@ class ConsumerGreeting extends React.Component<Props, State> {
 
 		signers.submitForm(this.props.navigation);
 
-		// setTimeout(() => {
-			// if(signers.validateForm == true){
-		// //
-		// // 		home.setName(signers.name);
-		// //
-		// // 		this.props.navigation.navigate("Home", {
-		// // 			status: true,
-		// // 			name: signers.name
-		// // 		});
-		// //
-		//
-
-				// signers.clearStore();
-				// home.setName(x);
-		//
-			// }
-		// }, 1000);
-
 	}
-
-
 
 	render() {
 
@@ -78,7 +47,7 @@ class ConsumerGreeting extends React.Component<Props, State> {
 		return (
 			<Container>
 				<Form>
-					<Item floatingLabel>
+						<Item inlineLabel>
 						<Label>Name:</Label>
 						<Input
 							style={styles.textField}
@@ -87,7 +56,7 @@ class ConsumerGreeting extends React.Component<Props, State> {
 							// onBlur={signer.submitForm}
 						/>
 					</Item>
-					<Item floatingLabel>
+					<Item inlineLabel>
 						<Label>Email:</Label>
 						<Input
 							style={styles.textField}
@@ -96,7 +65,7 @@ class ConsumerGreeting extends React.Component<Props, State> {
 							// onBlur={signer.submitForm}
 						/>
 					</Item>
-					<Item floatingLabel last>
+					<Item inlineLabel last>
 						<Label>Password:</Label>
 						<Input
 							style={styles.textField}

@@ -4,6 +4,8 @@ import {
   Header,
   Title,
   Content,
+  Card,
+  CardItem,
   Text,
   Button,
   Icon,
@@ -44,12 +46,12 @@ class Home extends React.Component<Props, State> {
   render() {
 
     const home = this.props.mainStore;
-    console.log(home.userAuthenticated);
+    // console.log(home.userAuthenticated);
     var isUserLoggedIn = null;
 
     if(this.props.navigation.state.params){
 
-      console.log(this.props.navigation.state.params);
+      // console.log(this.props.navigation.state.params);
 
       const param = this.props.navigation.state.params;
       //
@@ -89,33 +91,46 @@ class Home extends React.Component<Props, State> {
             // </ListItem>
           <Dashboard/>
           ) : (
-            <List>
-              {this.props.list.map((item, userType) => (
-                <ListItem
-                  key={userType}
-                  onPress={() => {
-                    const consumer = 0;
-                    const merchant = 1;
-                    if(userType == consumer){
-                      //consumer
-                      this.props.navigation.navigate("SignUp", {
-                        title: 'Register!',
-                        type: 'consumer'
-                      })
-                    }else if(userType == merchant){
-                      //business
-                      this.props.navigation.navigate("SignUp", {
-                        title: 'Register!',
-                        type: 'merchant'
-                      });
-                    }
 
-                }}
-                >
-                  <Text>{item}</Text>
-                </ListItem>
-              ))}
-            </List>
+            //screen for anonymous users
+            <Card style={styles.mainCard}>
+          <CardItem>
+            <Body>
+              <Text style={styles.subtext}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ac felis nec nisl tincidunt aliquam. Donec aliquet nulla nisl, ac lacinia nibh porta ut. Nulla facilisi. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ac felis nec nisl tincidunt aliquam. Donec aliquet nulla nisl, ac lacinia nibh porta ut. Nulla facilisi. </Text>
+            </Body>
+          </CardItem>
+        </Card>
+
+             //^^caused warning check for it
+
+
+            // <List>
+            //   {this.props.list.map((item, userType) => (
+            //     <ListItem
+            //       key={userType}
+            //       onPress={() => {
+            //         const consumer = 0;
+            //         const merchant = 1;
+            //         if(userType == consumer){
+            //           //consumer
+            //           this.props.navigation.navigate("SignUp", {
+            //             title: 'Register!',
+            //             type: 'consumer'
+            //           })
+            //         }else if(userType == merchant){
+            //           //business
+            //           this.props.navigation.navigate("SignUp", {
+            //             title: 'Register!',
+            //             type: 'merchant'
+            //           });
+            //         }
+            //
+            //     }}
+            //     >
+            //       <Text>{item}</Text>
+            //     </ListItem>
+            //   ))}
+            // </List>
           )
           }
         </Content>

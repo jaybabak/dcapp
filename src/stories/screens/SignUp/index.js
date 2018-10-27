@@ -4,7 +4,7 @@ import { observer, inject } from "mobx-react/native";
 
 import styles from "./styles";
 
-import ConsumerGreeting from "./consumer";
+import ConsumerGreeting from "./consumerSignUp";
 import BusinessGreeting from "./business";
 
 export interface Props {

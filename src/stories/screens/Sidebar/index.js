@@ -3,21 +3,6 @@ import { Text, Container, List, ListItem, Content } from "native-base";
 import { NavigationActions } from "react-navigation";
 import { observer, inject } from "mobx-react/native";
 
-const routes = [
-	{
-		route: "Home",
-		caption: "Home",
-	},
-	{
-		route: "BlankPage",
-		caption: "Who We Are",
-	},
-	{
-		route: "Login",
-		caption: "Logout",
-	},
-];
-
 export interface Props {
 	navigation: any,
 	mainStore: any,
@@ -35,7 +20,27 @@ const resetAction = NavigationActions.reset({
 ///Left off HERE - TRYING TO REMOVE LOG OUT LINK FOR ANONYMOUS USERS
 
 export default class Sidebar extends React.Component<Props, State> {
+
 	render() {
+
+		const home = this.props.mainStore;
+
+		//Template and Sidebar Navigation Routes for sidebar nav
+		const routes = [
+			{
+				route: "Home",
+				caption: "Home",
+			},
+			{
+				route: "BlankPage",
+				caption: "Who We Are",
+			},
+			{
+				route: "Login",
+				caption: home.authenticated ? "Logout" : "Go back to previous screen",
+			},
+		];
+
 		return (
 			<Container>
 				<Content>

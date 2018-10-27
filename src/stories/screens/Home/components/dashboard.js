@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Image } from "react-native";
 import {
   Container,
   Header,
@@ -24,6 +25,8 @@ export interface Props {
 }
 export interface State {}
 
+@inject("mainStore")
+@observer
 class Dashboard extends React.Component<Props, State> {
 
 
@@ -39,10 +42,20 @@ class Dashboard extends React.Component<Props, State> {
 
   render() {
 
+    const home = this.props.mainStore;
+
+    console.log('x-------------------------x');
+    console.log(home.getProfileImage);
+
     return (
       <Container style={styles.container}>
 
         <Content padder>
+          <Image
+            resizeMode={Image.resizeMode.contain}
+            source={{ uri: home.getProfileImage }}
+            style={{ width: 50, height:50 }}
+          />
           <Text>Authenticated Dashboard: You are viewing seceret content.</Text>
         </Content>
       </Container>
