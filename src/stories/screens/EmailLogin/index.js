@@ -15,7 +15,7 @@ export interface State {
 
 @inject("mainStore", "loginForm")
 @observer
-class Login extends React.Component<Props, State> {
+class EmailLogin extends React.Component<Props, State> {
 
 
 	componentDidMount(){
@@ -44,7 +44,7 @@ class Login extends React.Component<Props, State> {
 
 	}
 
-	facebookLogin = () => {
+	facebookEmailLogin = () => {
 
 		const home = this.props.mainStore;
 
@@ -88,7 +88,7 @@ class Login extends React.Component<Props, State> {
 
 	}
 
-	googleLogin = () => {
+	googleEmailLogin = () => {
 
 		const home = this.props.mainStore;
 
@@ -135,10 +135,10 @@ class Login extends React.Component<Props, State> {
 	render() {
 		return (
 			<Container>
-				<Header style={{ height: 200 }}>
+				<Header style={{ height: 325 }}>
 					<Body style={{ alignItems: "center" }}>
-						<Icon name="rewind" style={{ fontSize: 104 }} />
-						<Title>DCAPP</Title>
+						{/* <Icon name="rewind" style={{ fontSize: 104 }} /> */}
+						<Title style={{ marginTop: 50 }}>DCAPP</Title>
 						<View padder>
 							<Text style={{ color: Platform.OS === "ios" ? "#000" : "#FFF" }}>
 								Get your dry cleaning picked-up & delivered, simple!
@@ -147,21 +147,12 @@ class Login extends React.Component<Props, State> {
 					</Body>
 				</Header>
 				<Content>
-					{/* {this.props.loginForm} */}
+					{this.props.loginForm}
 					<View padder>
-						{/* <Button style={{ marginTop: 12, borderRadius: 25 }} block onPress={() => this.props.onLogin()}>
-							<Text>Login</Text>
-						</Button> */}
-						<Button style={styles.primaryBtn_deep_blue} block onPress={() => this.facebookLogin()}>
-							<Text>Login with Facebook</Text>
-						</Button>
-						<Button style={styles.primaryBtn_orange} block danger onPress={() => this.googleLogin()}>
-							<Text>Login with Google</Text>
+						<Button style={{ marginTop: 12, borderRadius: 25 }} block onPress={() => this.props.onLogin()}>
+							<Text>Continue to login with my email</Text>
 						</Button>
 
-						<Button style={styles.primaryBtn_blue} block onPress={() => 		this.props.navigation.navigate("EmailLogin")}>
-							<Text>Continue with my email</Text>
-						</Button>
 
 
 						{/* Old Button for sending user to the sign up page
@@ -188,21 +179,24 @@ class Login extends React.Component<Props, State> {
 										})}>
 							<Text>Sign Up As A Provider</Text>
 						</Button> */}
-						<Button onPress={() => this.props.navigation.navigate("Home")} style={{alignSelf: "center"}} iconLeft transparent primary>
+						<Button onPress={() => 		this.props.navigation.navigate("SignUp", {
+									title: 'User Registration',
+									type: 'consumer'
+								})} style={{alignSelf: "center"}} iconLeft transparent primary>
 							<Icon name='home' />
-							<Text>I'll login later</Text>
+							<Text>Register</Text>
 						</Button>
 					</View>
 				</Content>
 				<Footer style={{ backgroundColor: "#F8F8F8" }}>
-					<View style={{ alignItems: "center", opacity: 1, flexDirection: "row" }}>
+					<View style={{ alignItems: "center", opacity: 1, flexDirection: "column" }}>
 						<View padder>
-							<Text style={{ color: "#000" }}>Made with love by </Text>
+							{/* <Text style={{ marginTop: 8, justifyContent:'center', color: "#000", fontSize: 12 }}>Skip for now</Text> */}
+							<Button onPress={() => this.props.navigation.navigate("Home")} style={{alignSelf: "center"}} iconLeft transparent primary>
+								<Icon name='ios-arrow-round-forward' />
+								<Text>I'll login later</Text>
+							</Button>
 						</View>
-						<Image
-							source={{ uri: "http://phot0x.com/sites/default/files/styles/promo_image/public/2017-10/Screen%20Shot%202017-10-07%20at%203.55.46%20AM.png" }}
-							style={{ width: 422 / 4, height: 86 / 4 }}
-						/>
 					</View>
 				</Footer>
 			</Container>
@@ -210,4 +204,4 @@ class Login extends React.Component<Props, State> {
 	}
 }
 
-export default Login;
+export default EmailLogin;

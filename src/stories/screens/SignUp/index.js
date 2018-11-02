@@ -4,8 +4,8 @@ import { observer, inject } from "mobx-react/native";
 
 import styles from "./styles";
 
-import ConsumerGreeting from "./consumerSignUp";
-import BusinessGreeting from "./business";
+// import businessSignUp from "./businessSignUp";
+import ConsumerSignUp from "./consumerSignUp";
 
 export interface Props {
 	navigation: any;
@@ -25,9 +25,10 @@ class SignUp extends React.Component<Props, State> {
 		const signMeUp = this.props.signUpStore;
 
 		if(param.type == 'consumer'){
-			var signupForm = 	<ConsumerGreeting signUpStore={signMeUp} navigation={this.props.navigation}/>;
+			var signupForm = 	<ConsumerSignUp signUpStore={signMeUp} navigation={this.props.navigation}/>;
 		}else if(param.type == 'merchant'){
-			var signupForm = 	<BusinessGreeting/>;
+			console.log('business');
+			// var signupForm = 	<businessSignUp/>;
 		}
 
 		return (

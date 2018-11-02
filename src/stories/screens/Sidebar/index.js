@@ -37,7 +37,7 @@ export default class Sidebar extends React.Component<Props, State> {
 			},
 			{
 				route: "Login",
-				caption: home.authenticated ? "Logout" : "Go back to previous screen",
+				caption: home.authenticated ? "Logout" : "Register / Login",
 			},
 		];
 

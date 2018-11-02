@@ -15,6 +15,12 @@ class SignUpStore {
   @observable name = '';
   @observable email = '';
   @observable password = '';
+  @observable addressName = '';
+  @observable addressType = '';
+  @observable street = '';
+  @observable lat = '';
+  @observable long = '';
+  @observable long = '';
   @observable errors = {};
   @observable isValid = false;
 
@@ -76,6 +82,28 @@ class SignUpStore {
         navi.navigate("Login");
         this.clearStore();
         // this.isValid = false;
+      }else {
+        // Toast.show({
+        //   text: "Something isn't right, please check the form and try again.",
+        //   position: 'bottom',
+        //   duration: 5000,
+        //   textStyle: { textAlign: "center" },
+        // })
+        Alert.alert(
+        "Oops! Something Isn't Right",
+        'Pleaes check the form and try again',
+        [
+          {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+          {text: 'OK', onPress: () => {
+        		// Toast.show({
+        		// 	 text: 'Signup Completed ' + this.name+ '!',
+        		// 	 buttonText: "Ok"
+        		//  })
+        		// console.log(text.target);
+        	}},
+        ],
+          { cancelable: false }
+        )
       }
 
     }) // JSON from `response.json()` call

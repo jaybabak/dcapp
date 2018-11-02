@@ -67,6 +67,7 @@ class HomeStore {
   @action
   clearStore() {
     this.name = "@user";
+    this.avatar = 'http://phot0x.com/sites/default/files/styles/promo_image/public/2018-08/2Artboard%201%20copy%204%40lmood.png?itok=U_BVx-0d';
     this.authenticated = false;
     this.items = [];
     this.hasErrored = false;

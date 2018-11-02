@@ -13,9 +13,16 @@ const styles: any = StyleSheet.create({
 	textField: {
 		// borderBottomWidth: 3,
 		// height: 40,
-		// borderColor: 'gray',
+
+		// marginTop: 6,
+	},
+	textWrapper: {
+		// borderBottomWidth: 3,
+		// height: 40,
+		marginTop: 40
 		// borderWidth: 1,
-		// marginBottom: 25,
+		// borderColor: '#102D64',
+		// marginTop: 6,
 	}
 });
 export default styles;
