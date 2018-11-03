@@ -17,12 +17,16 @@ class ConsumerSignUp extends React.Component<Props, State> {
 
 	constructor(props) {
 	super(props);
-		this.state = { isShowingText: false };
+		this.state = {
+			isShowingText: true,
+			eyeVisibleIcon: 'eye'
+		};
 	}
 
 	toggleSecure = () => {
 		this.setState({
-			isShowingText: !this.state.isShowingText
+			isShowingText: !this.state.isShowingText,
+			eyeVisibleIcon: this.state.eyeVisibleIcon == 'eye' ? 'eye-off' : 'eye'
 		})
 	}
 
@@ -73,6 +77,9 @@ class ConsumerSignUp extends React.Component<Props, State> {
 							value={signer.name}
 							// onBlur={true}
 						/>
+						<Button style={styles.inlineIconForField}>
+							<Icon style={styles.helpIcon} size={40} name='help' />
+						</Button>
 					</Item>
 					<Item inlineLabel last rounded
 						error={signer.lastNameValid}
@@ -85,6 +92,9 @@ class ConsumerSignUp extends React.Component<Props, State> {
 							value={signer.lastName}
 							// onBlur={true}
 						/>
+						<Button style={styles.inlineIconForField}>
+							<Icon style={styles.helpIcon} size={40} name='help' />
+						</Button>
 					</Item>
 					<Item inlineLabel last rounded
 						error={signer.emailValid}
@@ -97,6 +107,9 @@ class ConsumerSignUp extends React.Component<Props, State> {
 							value={signer.email}
 							// onBlur={signer.submitForm}
 						/>
+						<Button style={styles.inlineIconForField}>
+							<Icon style={styles.helpIcon} size={40} name='help' />
+						</Button>
 					</Item>
 					<Item inlineLabel last rounded
 						error={signer.passwordValid}
@@ -110,8 +123,8 @@ class ConsumerSignUp extends React.Component<Props, State> {
 							value={signer.password}
 							// onBlur={signer.submitForm}
 						/>
-						<Button style={styles.toggleVisibility} onPress={this.toggleSecure}>
-							<Icon style={styles.eyeIcon} name="eye" />
+						<Button style={styles.inlineIconForField} onPress={this.toggleSecure}>
+							<Icon style={styles.eyeIcon} name={this.state.eyeVisibleIcon} />
 						</Button>
 					</Item>
 					<Button bordered onPress={this.nextPage} style={styles.submitBtn} color="red" block ><Text>Accept the terms and continue...</Text></Button>

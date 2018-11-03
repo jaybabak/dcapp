@@ -17,12 +17,15 @@ const styles: any = StyleSheet.create({
 
 		// marginTop: 6,
 	},
-	toggleVisibility: {
+	inlineIconForField: {
 		backgroundColor: 'transparent',
-
 	},
 	eyeIcon: {
 		color: '#102D64',
+	},
+	helpIcon: {
+		color: '#102D64',
+		marginRight: 20
 	},
 	textWrapper: {
 		// borderBottomWidth: 3,
