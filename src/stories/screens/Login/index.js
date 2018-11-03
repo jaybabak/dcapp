@@ -59,7 +59,7 @@ class Login extends React.Component<Props, State> {
 
 				const { picture, name, id, email } = await response.json();
 
-				// console.log(picture.data.url);
+				console.log(response.json());
 
 				home.setName(name);
 				home.setProfileImage(picture.data.url);
@@ -102,7 +102,7 @@ class Login extends React.Component<Props, State> {
 
 				if (result.type === 'success') {
 					console.log(result);
-
+					// "108562474867511286438"
 					home.setName(result.user.name);
 					home.setProfileImage(result.user.photoUrl);
 					home.toggleAuthenticateStatus();
@@ -188,6 +188,7 @@ class Login extends React.Component<Props, State> {
 										})}>
 							<Text>Sign Up As A Provider</Text>
 						</Button> */}
+
 						<Button onPress={() => this.props.navigation.navigate("Home")} style={{alignSelf: "center"}} iconLeft transparent primary>
 							<Icon name='home' />
 							<Text>I'll login later</Text>

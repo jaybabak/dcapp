@@ -43,7 +43,9 @@ class ConsumerSignUpStep2 extends React.Component<Props, State> {
 		console.log(signer);
 		var signupForm =
 					<Form>
-							<Item inlineLabel>
+							<Item inlineLabel last rounded
+								style={styles.textWrapper}
+								>
 							<Label>Address Name:</Label>
 							<Input
 								style={styles.textField}
@@ -52,7 +54,9 @@ class ConsumerSignUpStep2 extends React.Component<Props, State> {
 								// onBlur={signer.submitForm}
 							/>
 						</Item>
-						<Item inlineLabel>
+						<Item inlineLabel last rounded
+							style={styles.textWrapper}
+							>
 							<Label>Address Type:</Label>
 							<Input
 								style={styles.textField}
@@ -61,7 +65,9 @@ class ConsumerSignUpStep2 extends React.Component<Props, State> {
 								// onBlur={signer.submitForm}
 							/>
 						</Item>
-						<Item inlineLabel last>
+						<Item inlineLabel last rounded
+							style={styles.textWrapper}
+							>
 							<Label>Street:</Label>
 							<Input
 								style={styles.textField}
@@ -71,7 +77,9 @@ class ConsumerSignUpStep2 extends React.Component<Props, State> {
 								// onBlur={signer.submitForm}
 							/>
 						</Item>
-						<Item inlineLabel last>
+						<Item inlineLabel last rounded
+							style={styles.textWrapper}
+							>
 							<Label>Building Name:</Label>
 							<Input
 								style={styles.textField}
@@ -81,7 +89,9 @@ class ConsumerSignUpStep2 extends React.Component<Props, State> {
 								// onBlur={signer.submitForm}
 							/>
 						</Item>
-						<Item inlineLabel last>
+						<Item inlineLabel last rounded
+							style={styles.textWrapper}
+							>
 							<Label>Office/Apartment Floor:</Label>
 							<Input
 								style={styles.textField}
@@ -91,7 +101,9 @@ class ConsumerSignUpStep2 extends React.Component<Props, State> {
 								// onBlur={signer.submitForm}
 							/>
 						</Item>
-						<Item inlineLabel last>
+						<Item inlineLabel last rounded
+							style={styles.textWrapper}
+							>
 							<Label>Additional Directions:</Label>
 							<Input
 								style={styles.textField}
@@ -101,7 +113,9 @@ class ConsumerSignUpStep2 extends React.Component<Props, State> {
 								// onBlur={signer.submitForm}
 							/>
 						</Item>
-						<Item inlineLabel last>
+						<Item inlineLabel last rounded
+							style={styles.textWrapper}
+							>
 							<Label>Mobile Number:</Label>
 							<Input
 								style={styles.textField}

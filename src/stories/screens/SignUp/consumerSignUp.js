@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Container, Header, Title, Content, Text, Button, Icon, Left, Right, Body, Footer, Toast, FooterTab, Form, Item, Label, Input } from "native-base";
-import { View, Alert, TextInput } from 'react-native';
+import { View, Alert, TextInput, TouchableOpacity } from 'react-native';
 import { observer, inject } from "mobx-react/native";
 
 import styles from "./styles";
@@ -14,6 +14,17 @@ export interface State {}
 @inject("signUpStore", "mainStore")
 @observer
 class ConsumerSignUp extends React.Component<Props, State> {
+
+	constructor(props) {
+	super(props);
+		this.state = { isShowingText: false };
+	}
+
+	toggleSecure = () => {
+		this.setState({
+			isShowingText: !this.state.isShowingText
+		})
+	}
 
 	confirmSignUp = () => {
 
@@ -51,16 +62,34 @@ class ConsumerSignUp extends React.Component<Props, State> {
 		return (
 			<Container>
 				<Form>
-						<Item inlineLabel last rounded>
-						<Label>Name:</Label>
+					<Item inlineLabel last rounded
+						error={signer.nameValid}
+						style={styles.textWrapper}
+						>
+						<Label>First name:</Label>
 						<Input
 							style={styles.textField}
 							onChangeText={event => signer.nameChange(event)}
 							value={signer.name}
-							// onBlur={signer.submitForm}
+							// onBlur={true}
 						/>
 					</Item>
-					<Item inlineLabel last rounded>
+					<Item inlineLabel last rounded
+						error={signer.lastNameValid}
+						style={styles.textWrapper}
+						>
+						<Label>Last name:</Label>
+						<Input
+							style={styles.textField}
+							onChangeText={event => signer.lastNameChange(event)}
+							value={signer.lastName}
+							// onBlur={true}
+						/>
+					</Item>
+					<Item inlineLabel last rounded
+						error={signer.emailValid}
+						style={styles.textWrapper}
+						>
 						<Label>Email:</Label>
 						<Input
 							style={styles.textField}
@@ -69,17 +98,23 @@ class ConsumerSignUp extends React.Component<Props, State> {
 							// onBlur={signer.submitForm}
 						/>
 					</Item>
-					<Item inlineLabel last rounded>
+					<Item inlineLabel last rounded
+						error={signer.passwordValid}
+						style={styles.textWrapper}
+						>
 						<Label>Password:</Label>
 						<Input
 							style={styles.textField}
 							onChangeText={event => signer.pwdChange(event)}
-							secureTextEntry={true}
+							secureTextEntry={this.state.isShowingText}
 							value={signer.password}
 							// onBlur={signer.submitForm}
 						/>
+						<Button style={styles.toggleVisibility} onPress={this.toggleSecure}>
+							<Icon style={styles.eyeIcon} name="eye" />
+						</Button>
 					</Item>
-					<Button onPress={this.nextPage} style={styles.submitBtn} color="red" block ><Text>Accept the terms and continue...</Text></Button>
+					<Button bordered onPress={this.nextPage} style={styles.submitBtn} color="red" block ><Text>Accept the terms and continue...</Text></Button>
 				</Form>
 			</Container>
 		);

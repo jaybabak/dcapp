@@ -149,7 +149,7 @@ class EmailLogin extends React.Component<Props, State> {
 				<Content>
 					{this.props.loginForm}
 					<View padder>
-						<Button style={{ marginTop: 12, borderRadius: 25 }} block onPress={() => this.props.onLogin()}>
+						<Button bordered style={{ marginTop: 12, borderRadius: 25 }} block onPress={() => this.props.onLogin()}>
 							<Text>Continue to login with my email</Text>
 						</Button>
 

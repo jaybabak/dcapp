@@ -5,7 +5,8 @@ const styles: any = StyleSheet.create({
 		backgroundColor: "#FBFAFA",
 	},
 	submitBtn: {
-		marginTop: 45,
+		marginTop: 15,
+		borderRadius: 25
 	},
 	label: {
 		marginTop: 23,
@@ -16,10 +17,17 @@ const styles: any = StyleSheet.create({
 
 		// marginTop: 6,
 	},
+	toggleVisibility: {
+		backgroundColor: 'transparent',
+
+	},
+	eyeIcon: {
+		color: '#102D64',
+	},
 	textWrapper: {
 		// borderBottomWidth: 3,
 		// height: 40,
-		marginTop: 40
+		marginTop: 15
 		// borderWidth: 1,
 		// borderColor: '#102D64',
 		// marginTop: 6,

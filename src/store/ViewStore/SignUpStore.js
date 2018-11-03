@@ -8,13 +8,18 @@ class SignUpStore {
     user: {
       email: '',
       name: '',
+      lastName: '',
       password: ''
     }
   };
 
+  //unique user information
   @observable name = '';
+  @observable lastName = '';
   @observable email = '';
   @observable password = '';
+
+  //other user information
   @observable addressName = '';
   @observable addressType = '';
   @observable street = '';
@@ -24,9 +29,23 @@ class SignUpStore {
   @observable errors = {};
   @observable isValid = false;
 
+  //validation of Fields
+
+  @observable nameValid = false;
+  @observable lastNameValid = false;
+  @observable emailValid = false;
+  @observable passwordValid = false;
+
+
+
   @action
   nameChange = (event) => {
 		this.name = event;
+  }
+
+  @action
+  lastNameChange = (event) => {
+		this.lastName = event;
   }
 
   @action
@@ -43,10 +62,12 @@ class SignUpStore {
   submitForm = (navi) => {
 
 
+
     const userName = encodeURIComponent(this.name);
+    const userLastName = encodeURIComponent(this.lastName);
     const userEmail = encodeURIComponent(this.email);
     const userPassword = encodeURIComponent(this.password);
-    const formData = `name=${userName}&email=${userEmail}&password=${userPassword}`;
+    const formData = `name=${userName}&lastName=${userLastName}&email=${userEmail}&password=${userPassword}`;
 
     // console.log('YUP');
 
@@ -73,16 +94,24 @@ class SignUpStore {
     // postData(`https://dcapp-backend.herokuapp.com/auth/signup`, '') // staging dev backend sign up end point
     postData(`http://localhost:5000/auth/signup`, '') //local dev backend sign up end point
     .then((data) => {
-      console.log(data);
+      // console.log(data);
 
       if(data.success == true){
         this.isValid = true;
-        // this.clearStore();
-        console.log(this.isValid);
+
+
+
         navi.navigate("Login");
         this.clearStore();
         // this.isValid = false;
       }else {
+
+        console.log(data)
+        this.emailValid = data.errors.emailValid;
+        this.nameValid = data.errors.nameValid;
+        this.lastNameValid = data.errors.lastNameValid;
+        this.passwordValid = data.errors.passwordValid;
+        console.log(data.errors);
         // Toast.show({
         //   text: "Something isn't right, please check the form and try again.",
         //   position: 'bottom',
@@ -109,22 +138,6 @@ class SignUpStore {
     }) // JSON from `response.json()` call
     .catch(error => console.error(error));
 
-    // Alert.alert(
-	  // 'Consumer Regisration',
-	  // 'Are you sure you would like to submit this as a consumer?',
-	  // [
-	  //   {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-	  //   {text: 'OK', onPress: () => {
-		// 		Toast.show({
-		// 			 text: 'Signup Completed ' + this.name+ '!',
-		// 			 buttonText: "Ok"
-		// 		 })
-		// 		// console.log(text.target);
-		// 	}},
-	  // ],
-		//   { cancelable: false }
-		// )
-
   }
 
   @action
@@ -132,6 +145,7 @@ class SignUpStore {
     this.email = "";
     this.isValid = false;
     this.name = "";
+    this.lastName = "";
     this.password = "";
     this.errors = {};
   }
@@ -142,7 +156,7 @@ class SignUpStore {
 
 
   autorun = () => {
-    console.log(this);
+    // console.log(this.errors);
   }
 }
 
