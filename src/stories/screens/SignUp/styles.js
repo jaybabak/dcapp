@@ -17,6 +17,12 @@ const styles: any = StyleSheet.create({
 
 		// marginTop: 6,
 	},
+	dropDown: {
+		paddingLeft: 0,
+		// height: 40,
+
+		// marginTop: 6,
+	},
 	inlineIconForField: {
 		backgroundColor: 'transparent',
 	},
@@ -34,6 +40,13 @@ const styles: any = StyleSheet.create({
 		// borderWidth: 1,
 		// borderColor: '#102D64',
 		// marginTop: 6,
+	},
+	formFeedbackText: {
+		alignSelf: 'center',
+		fontSize: 14,
+		marginTop: 5,
+		color: 'red',
 	}
+
 });
 export default styles;

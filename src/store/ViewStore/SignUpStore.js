@@ -23,9 +23,15 @@ class SignUpStore {
   @observable addressName = '';
   @observable addressType = '';
   @observable street = '';
+  @observable buildingName = '';
+  @observable floor = '';
+  @observable additionalDirections = '';
+  @observable mobileNumber = '';
   @observable lat = '';
   @observable long = '';
-  @observable long = '';
+  @observable preferredAddress = true;
+
+  //validationForm
   @observable errors = {};
   @observable isValid = false;
 
@@ -35,6 +41,13 @@ class SignUpStore {
   @observable lastNameValid = false;
   @observable emailValid = false;
   @observable passwordValid = false;
+  @observable addressNameValid = false;
+  @observable addressTypeValid = false;
+  @observable streetValid = false;
+  @observable buildingNameValid = false;
+  @observable floorValid = false;
+  @observable additionalDirectionsValid = false;
+  @observable mobileNumberValid = false;
 
 
 
@@ -59,6 +72,16 @@ class SignUpStore {
   }
 
   @action
+  addressNameChange = (event) => {
+		this.addressName = event;
+  }
+
+  @action
+  addressTypeChange = (event) => {
+		this.addressType = event;
+  }
+
+  @action
   submitForm = (navi) => {
 
 
@@ -67,7 +90,10 @@ class SignUpStore {
     const userLastName = encodeURIComponent(this.lastName);
     const userEmail = encodeURIComponent(this.email);
     const userPassword = encodeURIComponent(this.password);
-    const formData = `name=${userName}&lastName=${userLastName}&email=${userEmail}&password=${userPassword}`;
+    const addressName = encodeURIComponent(this.addressName);
+    const addressType = encodeURIComponent(this.addressType);
+
+    const formData = `name=${userName}&lastName=${userLastName}&email=${userEmail}&password=${userPassword}&addressName=${addressName}&addressType=${addressType}`;
 
     // console.log('YUP');
 
@@ -98,26 +124,19 @@ class SignUpStore {
 
       if(data.success == true){
         this.isValid = true;
-
-
-
         navi.navigate("Login");
         this.clearStore();
         // this.isValid = false;
       }else {
 
-        console.log(data)
-        this.emailValid = data.errors.emailValid;
-        this.nameValid = data.errors.nameValid;
-        this.lastNameValid = data.errors.lastNameValid;
-        this.passwordValid = data.errors.passwordValid;
-        console.log(data.errors);
-        // Toast.show({
-        //   text: "Something isn't right, please check the form and try again.",
-        //   position: 'bottom',
-        //   duration: 5000,
-        //   textStyle: { textAlign: "center" },
-        // })
+
+        this.errors = data.errors;
+        console.log(data);
+        this.emailValid = data.errors.emailInvalid;
+        this.nameValid = data.errors.nameInvalid;
+        this.lastNameValid = data.errors.lastNameInvalid;
+        this.passwordValid = data.errors.passwordInvalid;
+        // console.log(data.errors);
         Alert.alert(
         "Oops! Something Isn't Right",
         'Pleaes check the form and try again',

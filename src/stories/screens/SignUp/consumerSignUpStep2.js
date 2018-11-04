@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Container, Header, Title, Content, Text, Button, Icon, Left, Right, Body, Footer, Toast, FooterTab, Form, Item, Label, Input, ListItem, CheckBox } from "native-base";
+import { Container, Header, Title, Content, Text, Button, Icon, Left, Right, Body, Footer, Toast, FooterTab, Form, Item, Label, Input, ListItem, CheckBox, Picker } from "native-base";
 import { View, Alert, TextInput } from 'react-native';
 import { observer, inject } from "mobx-react/native";
 
@@ -15,6 +15,19 @@ export interface State {}
 @observer
 class ConsumerSignUpStep2 extends React.Component<Props, State> {
 
+	toggleHelp = () => {
+
+		const signers = this.props.signUpStore;
+		const home = this.props.mainStore;
+
+		Toast.show({
+			text: "Some Helpful Message About The Form Field With Error",
+			duration: 4000,
+			position: "bottom",
+			textStyle: { textAlign: "center" },
+		});
+	}
+
 	confirmSignUp = () => {
 
 		const signers = this.props.signUpStore;
@@ -24,15 +37,6 @@ class ConsumerSignUpStep2 extends React.Component<Props, State> {
 
 			return;
 		}
-
-		console.log('test');
-
-
-
-		// Alert.alert(
-		// 	'Ooops!',
-		// 	`Something isn't right, please check the form again!`,
-		// );
 
 		signers.submitForm(this.props.navigation);
 	}
@@ -49,22 +53,38 @@ class ConsumerSignUpStep2 extends React.Component<Props, State> {
 							<Label>Address Name:</Label>
 							<Input
 								style={styles.textField}
-								onChangeText={event => signer.nameChange(event)}
-								value={signer.name}
+								onChangeText={event => signer.addressNameChange(event)}
+								value={signer.addressName}
 								// onBlur={signer.submitForm}
 							/>
+							<Button style={styles.inlineIconForField} onPress={this.toggleHelp}>
+								<Icon style={styles.helpIcon} size={40} name='help' />
+							</Button>
 						</Item>
-						<Item inlineLabel last rounded
-							style={styles.textWrapper}
-							>
-							<Label>Address Type:</Label>
-							<Input
-								style={styles.textField}
-								onChangeText={event => signer.emailChange(event)}
-								value={signer.email}
-								// onBlur={signer.submitForm}
-							/>
-						</Item>
+
+
+
+						<Item inlineLabel last rounded picker style={styles.textWrapper}>
+							<Label>Type:</Label>
+						 <Picker
+							 mode="dropdown"
+							 iosIcon={<Icon name="ios-arrow-down-outline" />}
+							 style={styles.dropDown}
+							 placeholder="Home, Office or Apartment?"
+							 placeholderStyle={{ color: "#BCBCBC" }}
+							 placeholderIconColor="#007aff"
+							 selectedValue={signer.addressType}
+							 onValueChange={signer.addressTypeChange}
+						 >
+							 <Picker.Item label="Home" value="Home" />
+							 <Picker.Item label="Apartment" value="Apartment" />
+							 <Picker.Item label="Office" value="Office" />
+						 </Picker>
+						 <Button style={styles.inlineIconForField} onPress={this.toggleHelp}>
+							 <Icon style={styles.helpIcon} size={40} name='help' />
+						 </Button>
+					 </Item>
+
 						<Item inlineLabel last rounded
 							style={styles.textWrapper}
 							>
@@ -76,6 +96,9 @@ class ConsumerSignUpStep2 extends React.Component<Props, State> {
 								value={signer.password}
 								// onBlur={signer.submitForm}
 							/>
+							<Button style={styles.inlineIconForField} onPress={this.toggleHelp}>
+								<Icon style={styles.helpIcon} size={40} name='help' />
+							</Button>
 						</Item>
 						<Item inlineLabel last rounded
 							style={styles.textWrapper}
@@ -88,6 +111,9 @@ class ConsumerSignUpStep2 extends React.Component<Props, State> {
 								value={signer.password}
 								// onBlur={signer.submitForm}
 							/>
+							<Button style={styles.inlineIconForField} onPress={this.toggleHelp}>
+								<Icon style={styles.helpIcon} size={40} name='help' />
+							</Button>
 						</Item>
 						<Item inlineLabel last rounded
 							style={styles.textWrapper}
@@ -100,6 +126,9 @@ class ConsumerSignUpStep2 extends React.Component<Props, State> {
 								value={signer.password}
 								// onBlur={signer.submitForm}
 							/>
+							<Button style={styles.inlineIconForField} onPress={this.toggleHelp}>
+								<Icon style={styles.helpIcon} size={40} name='help' />
+							</Button>
 						</Item>
 						<Item inlineLabel last rounded
 							style={styles.textWrapper}
@@ -112,6 +141,9 @@ class ConsumerSignUpStep2 extends React.Component<Props, State> {
 								value={signer.password}
 								// onBlur={signer.submitForm}
 							/>
+							<Button style={styles.inlineIconForField} onPress={this.toggleHelp}>
+								<Icon style={styles.helpIcon} size={40} name='help' />
+							</Button>
 						</Item>
 						<Item inlineLabel last rounded
 							style={styles.textWrapper}
@@ -124,6 +156,9 @@ class ConsumerSignUpStep2 extends React.Component<Props, State> {
 								value={signer.password}
 								// onBlur={signer.submitForm}
 							/>
+							<Button style={styles.inlineIconForField} onPress={this.toggleHelp}>
+								<Icon style={styles.helpIcon} size={40} name='help' />
+							</Button>
 						</Item>
 						<ListItem>
 							<CheckBox checked={true} color="blue"/>

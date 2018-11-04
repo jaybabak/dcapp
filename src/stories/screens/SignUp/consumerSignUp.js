@@ -30,6 +30,19 @@ class ConsumerSignUp extends React.Component<Props, State> {
 		})
 	}
 
+	toggleHelp = () => {
+
+		const signers = this.props.signUpStore;
+		const home = this.props.mainStore;
+
+		Toast.show({
+			text: "Some Helpful Message About The Form Field With Error",
+			duration: 4000,
+			position: "bottom",
+			textStyle: { textAlign: "center" },
+		});
+	}
+
 	confirmSignUp = () => {
 
 		const signers = this.props.signUpStore;
@@ -44,7 +57,7 @@ class ConsumerSignUp extends React.Component<Props, State> {
 			});
 			return;
 		}
-
+		console.log(signers.errors);
 		signers.submitForm(this.props.navigation);
 	}
 
@@ -77,7 +90,7 @@ class ConsumerSignUp extends React.Component<Props, State> {
 							value={signer.name}
 							// onBlur={true}
 						/>
-						<Button style={styles.inlineIconForField}>
+						<Button style={styles.inlineIconForField} onPress={this.toggleHelp}>
 							<Icon style={styles.helpIcon} size={40} name='help' />
 						</Button>
 					</Item>
@@ -92,7 +105,7 @@ class ConsumerSignUp extends React.Component<Props, State> {
 							value={signer.lastName}
 							// onBlur={true}
 						/>
-						<Button style={styles.inlineIconForField}>
+						<Button style={styles.inlineIconForField} onPress={this.toggleHelp}>
 							<Icon style={styles.helpIcon} size={40} name='help' />
 						</Button>
 					</Item>
@@ -107,10 +120,18 @@ class ConsumerSignUp extends React.Component<Props, State> {
 							value={signer.email}
 							// onBlur={signer.submitForm}
 						/>
-						<Button style={styles.inlineIconForField}>
+						<Button style={styles.inlineIconForField} onPress={this.toggleHelp}>
 							<Icon style={styles.helpIcon} size={40} name='help' />
 						</Button>
 					</Item>
+
+					<Text style={{
+							display: 'none',
+							alignSelf: 'center',
+							fontSize: 14,
+							marginTop: 5,
+							color: 'red',}}></Text>
+
 					<Item inlineLabel last rounded
 						error={signer.passwordValid}
 						style={styles.textWrapper}
@@ -128,6 +149,7 @@ class ConsumerSignUp extends React.Component<Props, State> {
 						</Button>
 					</Item>
 					<Button bordered onPress={this.nextPage} style={styles.submitBtn} color="red" block ><Text>Accept the terms and continue...</Text></Button>
+					{/* <Button onPress={this.confirmSignUp} style={styles.submitBtn} color="red" block ><Text>Register!</Text></Button> */}
 				</Form>
 			</Container>
 		);
