@@ -67,6 +67,13 @@ class ConsumerSignUp extends React.Component<Props, State> {
 		const signers = this.props.signUpStore;
 		const home = this.props.mainStore;
 
+		signers.submitForm(this.props.navigation);
+
+
+		//LEFT OFF HERE ADDING A IF STATEMENT TO CHECK IF STEP 1 IS VALID AND COMPLETE
+		// if(signers.step1isvalid == true){
+		// 	this.props.navigation.navigate("ConsumerSignUpStep2");
+		// }
 		this.props.navigation.navigate("ConsumerSignUpStep2");
 		// signers.submitForm(this.props.navigation);
 	}

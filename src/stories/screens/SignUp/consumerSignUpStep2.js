@@ -48,6 +48,7 @@ class ConsumerSignUpStep2 extends React.Component<Props, State> {
 		var signupForm =
 					<Form>
 							<Item inlineLabel last rounded
+								error={signer.addressNameValid}
 								style={styles.textWrapper}
 								>
 							<Label>Address Name:</Label>
@@ -62,9 +63,9 @@ class ConsumerSignUpStep2 extends React.Component<Props, State> {
 							</Button>
 						</Item>
 
-
-
-						<Item inlineLabel last rounded picker style={styles.textWrapper}>
+						<Item inlineLabel last rounded picker
+							error={signer.addressTypeValid}
+							style={styles.textWrapper}>
 							<Label>Type:</Label>
 						 <Picker
 							 mode="dropdown"
@@ -86,58 +87,61 @@ class ConsumerSignUpStep2 extends React.Component<Props, State> {
 					 </Item>
 
 						<Item inlineLabel last rounded
+							error={signer.streetValid}
 							style={styles.textWrapper}
 							>
 							<Label>Street:</Label>
 							<Input
 								style={styles.textField}
-								onChangeText={event => signer.pwdChange(event)}
-								secureTextEntry={true}
-								value={signer.password}
+								onChangeText={event => signer.streetChange(event)}
+								value={signer.street}
 								// onBlur={signer.submitForm}
 							/>
 							<Button style={styles.inlineIconForField} onPress={this.toggleHelp}>
 								<Icon style={styles.helpIcon} size={40} name='help' />
 							</Button>
 						</Item>
+
 						<Item inlineLabel last rounded
+							error={signer.buildingNameValid}
 							style={styles.textWrapper}
 							>
 							<Label>Building Name:</Label>
 							<Input
 								style={styles.textField}
-								onChangeText={event => signer.pwdChange(event)}
-								secureTextEntry={true}
-								value={signer.password}
+								onChangeText={event => signer.buildingNameChange(event)}
+								value={signer.buildingName}
 								// onBlur={signer.submitForm}
 							/>
 							<Button style={styles.inlineIconForField} onPress={this.toggleHelp}>
 								<Icon style={styles.helpIcon} size={40} name='help' />
 							</Button>
 						</Item>
+
 						<Item inlineLabel last rounded
+							error={signer.floorValid}
 							style={styles.textWrapper}
 							>
 							<Label>Office/Apartment Floor:</Label>
 							<Input
 								style={styles.textField}
-								onChangeText={event => signer.pwdChange(event)}
-								secureTextEntry={true}
-								value={signer.password}
+								onChangeText={event => signer.floorChange(event)}
+								value={signer.floor}
 								// onBlur={signer.submitForm}
 							/>
 							<Button style={styles.inlineIconForField} onPress={this.toggleHelp}>
 								<Icon style={styles.helpIcon} size={40} name='help' />
 							</Button>
 						</Item>
+
 						<Item inlineLabel last rounded
+							error={signer.additionalDirectionsValid}
 							style={styles.textWrapper}
 							>
 							<Label>Additional Directions:</Label>
 							<Input
 								style={styles.textField}
 								onChangeText={event => signer.pwdChange(event)}
-								secureTextEntry={true}
 								value={signer.password}
 								// onBlur={signer.submitForm}
 							/>
@@ -145,14 +149,15 @@ class ConsumerSignUpStep2 extends React.Component<Props, State> {
 								<Icon style={styles.helpIcon} size={40} name='help' />
 							</Button>
 						</Item>
+
 						<Item inlineLabel last rounded
+							error={signer.mobileNumberValid}
 							style={styles.textWrapper}
 							>
 							<Label>Mobile Number:</Label>
 							<Input
 								style={styles.textField}
 								onChangeText={event => signer.pwdChange(event)}
-								secureTextEntry={true}
 								value={signer.password}
 								// onBlur={signer.submitForm}
 							/>
@@ -161,7 +166,7 @@ class ConsumerSignUpStep2 extends React.Component<Props, State> {
 							</Button>
 						</Item>
 						<ListItem>
-							<CheckBox checked={true} color="blue"/>
+							<CheckBox schecked={true} color="blue"/>
 							<Body>
 								<Text>Save this as my preferred address</Text>
 							</Body>

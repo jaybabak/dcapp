@@ -34,6 +34,7 @@ class SignUpStore {
   //validationForm
   @observable errors = {};
   @observable isValid = false;
+  @observable step1isValid = false;
 
   //validation of Fields
 
@@ -82,6 +83,31 @@ class SignUpStore {
   }
 
   @action
+  streetChange = (event) => {
+		this.street = event;
+  }
+
+  @action
+  buildingNameChange = (event) => {
+		this.buildingName = event;
+  }
+
+  @action
+  floorChange = (event) => {
+		this.floor = event;
+  }
+
+  @action
+  additionalDirectionsChange = (event) => {
+		this.additionalDirections = event;
+  }
+
+  @action
+  mobileNumberChange = (event) => {
+		this.mobileNumber = event;
+  }
+
+  @action
   submitForm = (navi) => {
 
 
@@ -92,8 +118,17 @@ class SignUpStore {
     const userPassword = encodeURIComponent(this.password);
     const addressName = encodeURIComponent(this.addressName);
     const addressType = encodeURIComponent(this.addressType);
+    const street = encodeURIComponent(this.street);
+    const buildingName = encodeURIComponent(this.buildingName);
+    const floor = encodeURIComponent(this.floor);
+    const additionalDirections = encodeURIComponent(this.additionalDirections);
+    const mobileNumber = encodeURIComponent(this.mobileNumber);
+    const lat = encodeURIComponent(this.lat);
+    const long = encodeURIComponent(this.long);
+    const preferredAddress = encodeURIComponent(this.preferredAddress);;
 
-    const formData = `name=${userName}&lastName=${userLastName}&email=${userEmail}&password=${userPassword}&addressName=${addressName}&addressType=${addressType}`;
+
+    const formData = `name=${userName}&lastName=${userLastName}&email=${userEmail}&password=${userPassword}&addressName=${addressName}&addressType=${addressType}&street=${street}&buildingName=${buildingName}&floor=${floor}&additionalDirections=${additionalDirections}&mobileNumber=${mobileNumber}&lat=${lat}&long=${long}&preferredAddress=${preferredAddress}`;
 
     // console.log('YUP');
 
@@ -132,10 +167,24 @@ class SignUpStore {
 
         this.errors = data.errors;
         console.log(data);
+
         this.emailValid = data.errors.emailInvalid;
         this.nameValid = data.errors.nameInvalid;
         this.lastNameValid = data.errors.lastNameInvalid;
         this.passwordValid = data.errors.passwordInvalid;
+        this.addressNameValid = data.errors.addressNameInvalid;
+        this.addressTypeValid = data.errors.addressTypeInvalid;
+        this.streetValid = data.errors.streetInvalid;
+        this.buildingNameValid = data.errors.buildingNameInvalid;;
+        this.floorValid = data.errors.floorInvalid;;
+        this.additionalDirectionsValid = data.errors.additionalDirectionsInvalid;;
+        this.mobileNumberValid = data.errors.mobileNumberInvalid;;
+
+
+        console.log(this);
+
+        
+
         // console.log(data.errors);
         Alert.alert(
         "Oops! Something Isn't Right",
