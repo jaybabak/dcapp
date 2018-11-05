@@ -141,8 +141,8 @@ class ConsumerSignUpStep2 extends React.Component<Props, State> {
 							<Label>Additional Directions:</Label>
 							<Input
 								style={styles.textField}
-								onChangeText={event => signer.pwdChange(event)}
-								value={signer.password}
+								onChangeText={event => signer.additionalDirectionsChange(event)}
+								value={signer.additionalDirections}
 								// onBlur={signer.submitForm}
 							/>
 							<Button style={styles.inlineIconForField} onPress={this.toggleHelp}>
@@ -157,16 +157,16 @@ class ConsumerSignUpStep2 extends React.Component<Props, State> {
 							<Label>Mobile Number:</Label>
 							<Input
 								style={styles.textField}
-								onChangeText={event => signer.pwdChange(event)}
-								value={signer.password}
+								onChangeText={event => signer.mobileNumberChange(event)}
+								value={signer.mobileNumber}
 								// onBlur={signer.submitForm}
 							/>
 							<Button style={styles.inlineIconForField} onPress={this.toggleHelp}>
 								<Icon style={styles.helpIcon} size={40} name='help' />
 							</Button>
 						</Item>
-						<ListItem>
-							<CheckBox schecked={true} color="blue"/>
+						<ListItem onPress={signer.togglePreferredAddress}>
+							<CheckBox checked={signer.preferredAddress} color="blue"/>
 							<Body>
 								<Text>Save this as my preferred address</Text>
 							</Body>
@@ -180,9 +180,11 @@ class ConsumerSignUpStep2 extends React.Component<Props, State> {
 			<Container style={styles.container}>
 				<Header>
 					<Left>
-						<Button transparent onPress={() => this.props.navigation.goBack()}>
+						{/* Back button on the second step for sign up */}
+
+						{/* <Button transparent onPress={() => this.props.navigation.goBack()}>
 							<Icon name="ios-arrow-back" />
-						</Button>
+						</Button> */}
 					</Left>
 
 					<Body style={{ flex: 3 }}>

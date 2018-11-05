@@ -34,7 +34,7 @@ class SignUpStore {
   //validationForm
   @observable errors = {};
   @observable isValid = false;
-  @observable step1isValid = false;
+  @observable signUpStep1Complete = false;
 
   //validation of Fields
 
@@ -108,6 +108,11 @@ class SignUpStore {
   }
 
   @action
+  togglePreferredAddress = () => {
+		this.preferredAddress = !this.preferredAddress;
+  }
+
+  @action
   submitForm = (navi) => {
 
 
@@ -155,18 +160,18 @@ class SignUpStore {
     // postData(`https://dcapp-backend.herokuapp.com/auth/signup`, '') // staging dev backend sign up end point
     postData(`http://localhost:5000/auth/signup`, '') //local dev backend sign up end point
     .then((data) => {
-      // console.log(data);
+      console.log(data);
 
       if(data.success == true){
         this.isValid = true;
-        navi.navigate("Login");
         this.clearStore();
+        navi.navigate("Login");
         // this.isValid = false;
       }else {
 
 
         this.errors = data.errors;
-        console.log(data);
+        // console.log(data);
 
         this.emailValid = data.errors.emailInvalid;
         this.nameValid = data.errors.nameInvalid;
@@ -175,32 +180,97 @@ class SignUpStore {
         this.addressNameValid = data.errors.addressNameInvalid;
         this.addressTypeValid = data.errors.addressTypeInvalid;
         this.streetValid = data.errors.streetInvalid;
-        this.buildingNameValid = data.errors.buildingNameInvalid;;
-        this.floorValid = data.errors.floorInvalid;;
-        this.additionalDirectionsValid = data.errors.additionalDirectionsInvalid;;
-        this.mobileNumberValid = data.errors.mobileNumberInvalid;;
+        this.buildingNameValid = data.errors.buildingNameInvalid;
+        this.floorValid = data.errors.floorInvalid;
+        this.additionalDirectionsValid = data.errors.additionalDirectionsInvalid;
+        this.mobileNumberValid = data.errors.mobileNumberInvalid;
 
 
-        console.log(this);
+        // console.log(this);
 
-        
+        if(!this.nameValid && !this.lastNameValid && !this.emailValid && !this.passwordValid){
+          // Toast.show({
+          //    text: this.name + " We're almost finished!",
+          //    buttonText: "Ok"
+          //  })
+          //
 
-        // console.log(data.errors);
-        Alert.alert(
-        "Oops! Something Isn't Right",
-        'Pleaes check the form and try again',
-        [
-          {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-          {text: 'OK', onPress: () => {
-        		// Toast.show({
-        		// 	 text: 'Signup Completed ' + this.name+ '!',
-        		// 	 buttonText: "Ok"
-        		//  })
-        		// console.log(text.target);
-        	}},
-        ],
-          { cancelable: false }
-        )
+
+
+
+          // console.log(this);
+
+          if(this.signUpStep1Complete == true){
+            console.log('signupstep1 completed');
+            // return;
+
+            Alert.alert(
+            "Oops! Something Isn't Right",
+            'Pleaes check the form and try again',
+            [
+              {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+              {text: 'OK', onPress: () => {
+
+              }},
+            ],
+              { cancelable: false }
+            )
+
+          }else {
+            console.log('NOT completed');
+
+            this.addressNameValid = !data.errors.addressNameInvalid;
+            this.addressTypeValid = !data.errors.addressTypeInvalid;
+            this.streetValid = !data.errors.streetInvalid;
+            this.buildingNameValid = !data.errors.buildingNameInvalid;
+            this.floorValid = !data.errors.floorInvalid;
+            this.additionalDirectionsValid = !data.errors.additionalDirectionsInvalid;
+            this.mobileNumberValid = !data.errors.mobileNumberInvalid;
+
+            navi.navigate("ConsumerSignUpStep2");
+          }
+
+
+          this.signUpStep1Complete = true;
+
+
+          // if(!this.addressNameValid && !this.addressTypeValid && !this.streetValid && !this.buildingNameValid && !this.floorValid && !this.additionalDirectionsValid && !this.mobileNumberValid){
+          //
+          //   console.log('Second Step Valid');
+          //
+          //
+          // }
+
+
+          // this.addressNameValid = !data.errors.addressNameInvalid;
+          // this.addressTypeValid = !data.errors.addressTypeInvalid;
+          // this.streetValid = !data.errors.streetInvalid;
+          // this.buildingNameValid = !data.errors.buildingNameInvalid;
+          // this.floorValid = !data.errors.floorInvalid;
+          // this.additionalDirectionsValid = !data.errors.additionalDirectionsInvalid;
+          // this.mobileNumberValid = !data.errors.mobileNumberInvalid;
+
+
+
+
+        }else {
+
+          // console.log(data.errors);
+          Alert.alert(
+          "Oops! Something Isn't Right",
+          'Pleaes check the form and try again',
+          [
+            {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+            {text: 'OK', onPress: () => {
+
+          	}},
+          ],
+            { cancelable: false }
+          )
+
+        }
+
+
       }
 
     }) // JSON from `response.json()` call
@@ -215,7 +285,30 @@ class SignUpStore {
     this.name = "";
     this.lastName = "";
     this.password = "";
+
+    this.emailValid = "";
+    this.nameValid = "";
+    this.lastNameValid = "";
+    this.passwordValid = "";
+    this.addressNameValid = false;
+    this.addressTypeValid = false;
+    this.streetValid = false;
+    this.buildingNameValid = false;
+    this.floorValid = false;
+    this.additionalDirectionsValid = false;
+    this.mobileNumberValid = false;
+    this.addressName = '';
+    this.addressType = '';
+    this.street = '';
+    this.buildingName = '';
+    this.floor = '';
+    this.additionalDirections = '';
+    this.mobileNumber = '';
+    this.lat = '';
+    this.long = '';
+    this.preferredAddress = true;
     this.errors = {};
+    this.signUpStep1Complete = false;
   }
 
   @computed get validateForm(){
