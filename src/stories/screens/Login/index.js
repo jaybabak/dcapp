@@ -18,73 +18,91 @@ export interface State {
 class Login extends React.Component<Props, State> {
 
 
+
 	componentDidMount(){
 
 		const home = this.props.mainStore;
 		const loginStore = this.props.loginForm;
 
-		home.clearStore;
-		loginStore.clearStore;
+		// home.clearStore;
+		// loginStore.clearStore;
 
 		// console.log(home.getToken);
 
-		//CLEAR LOCAL STORED TOKEN WHEN ARRIVING ON LOGIN SCREEN
+		//NEED TO IMPLENT DO NOT CLEAR LOCAL STORED TOKEN WHEN ARRIVING ON LOGIN SCREEN
 		// home.deauthenticateUser();
-		if(!home.userAuthenticated){
-			this.props.navigation.navigate("Home");
-		}
+		// if(!home.userAuthenticated){
+		// 	this.props.navigation.navigate("Home");
+		// }
 	}
 
-	signUpUser(){
-
-		this.props.navigation.navigate("SignUp", {
-			title: 'Register as a User',
-			type: 'consumer'
-		})
-
-	}
 
 	facebookLogin = () => {
 
 		const home = this.props.mainStore;
+		const loginStore = this.props.mainStore;
+		var user = {};
 
 		const logIn = async () => {
-	  const { type, token } = await Expo.Facebook.logInWithReadPermissionsAsync('192651401441339', {
+
+	  const { type, token, expires, permissions } = await Expo.Facebook.logInWithReadPermissionsAsync('192651401441339', {
 		      permissions: ['public_profile'],
 		    });
+
+
+
 		  if (type === 'success') {
+
+
+
+
 		    // Get the user's name using Facebook's Graph API
 		    const response = await fetch(
 		      `https://graph.facebook.com/me?access_token=${token}&fields=name,id,email,picture`);
 
 				const { picture, name, id, email } = await response.json();
 
-				console.log(response.json());
-
+				home.setEmail(email);
 				home.setName(name);
 				home.setProfileImage(picture.data.url);
 				home.toggleAuthenticateStatus();
-				home.authenticateUser(id);
-
-				// console.log(id, email, picture, name);
+				home.authenticateUser(token);
 
 		    Alert.alert(
 		      'Logged in!',
 		      `Hi ${name}!`,
 		    );
 
+				// const
+				//wait for response if new user take them to consumer sign up screen
+				//if existing user take them to the homepage
+
 				this.props.navigation.navigate("Home");
 
+				home.fbAuthentication()
+				// console.log(user.email);
 
-		  }
+				// loginStore.authenticateFB(token, user)
+
+				//use ID to create a userObject for facebook user with ID and accesstoken fields
+				// If authenticated user and id + token are recieved create a POST request to backend to
+				// to see if User ID exists already in the user table if not create the user and store the id and accesstoken
+				// if user already exists then store the new access token
+				// console.log(email);
+
+
+
+		  }else {
+				//Cancelled or error
+				Alert.alert(
+					'Facebook',
+					`You weren't authenticated through Facebook, try again!`,
+				);
+			}
 		}
 
-		if(!home.userAuthenticated){
-			this.props.navigation.navigate("Home");
-		}
 
 		logIn()
-
 
 	}
 

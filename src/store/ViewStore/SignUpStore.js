@@ -189,16 +189,6 @@ class SignUpStore {
         // console.log(this);
 
         if(!this.nameValid && !this.lastNameValid && !this.emailValid && !this.passwordValid){
-          // Toast.show({
-          //    text: this.name + " We're almost finished!",
-          //    buttonText: "Ok"
-          //  })
-          //
-
-
-
-
-          // console.log(this);
 
           if(this.signUpStep1Complete == true){
             console.log('signupstep1 completed');
@@ -232,25 +222,6 @@ class SignUpStore {
 
 
           this.signUpStep1Complete = true;
-
-
-          // if(!this.addressNameValid && !this.addressTypeValid && !this.streetValid && !this.buildingNameValid && !this.floorValid && !this.additionalDirectionsValid && !this.mobileNumberValid){
-          //
-          //   console.log('Second Step Valid');
-          //
-          //
-          // }
-
-
-          // this.addressNameValid = !data.errors.addressNameInvalid;
-          // this.addressTypeValid = !data.errors.addressTypeInvalid;
-          // this.streetValid = !data.errors.streetInvalid;
-          // this.buildingNameValid = !data.errors.buildingNameInvalid;
-          // this.floorValid = !data.errors.floorInvalid;
-          // this.additionalDirectionsValid = !data.errors.additionalDirectionsInvalid;
-          // this.mobileNumberValid = !data.errors.mobileNumberInvalid;
-
-
 
 
         }else {

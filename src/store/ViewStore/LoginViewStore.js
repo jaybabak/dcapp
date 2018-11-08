@@ -15,6 +15,10 @@ class LoginStore {
   @observable passwordError = "";
   @observable successMessage = "";
   @observable storedMessage = AsyncStorage.getItem('successMessage');
+  @observable user = {
+    name: '',
+    email: '',
+  };
 
   if (storedMessage) {
     successMessage = storedMessage;
@@ -144,7 +148,7 @@ class LoginStore {
           position: 'bottom',
           duration: 3200,
           textStyle: { color: "#5ECFE5" }
-        }));
+    }));
   }
 
   @action

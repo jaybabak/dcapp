@@ -29,7 +29,6 @@ export interface State {}
 @observer
 class Dashboard extends React.Component<Props, State> {
 
-
   componentDidMount(){
 
 
@@ -43,9 +42,6 @@ class Dashboard extends React.Component<Props, State> {
   render() {
 
     const home = this.props.mainStore;
-
-    console.log('x-------------------------x');
-    console.log(home.getProfileImage);
 
     return (
       <Container style={styles.container}>

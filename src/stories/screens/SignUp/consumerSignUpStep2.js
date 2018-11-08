@@ -182,9 +182,9 @@ class ConsumerSignUpStep2 extends React.Component<Props, State> {
 					<Left>
 						{/* Back button on the second step for sign up */}
 
-						{/* <Button transparent onPress={() => this.props.navigation.goBack()}>
+						<Button transparent onPress={() => this.props.navigation.goBack()}>
 							<Icon name="ios-arrow-back" />
-						</Button> */}
+						</Button>
 					</Left>
 
 					<Body style={{ flex: 3 }}>
