@@ -27,15 +27,12 @@ class Login extends React.Component<Props, State> {
 		// home.clearStore;
 		// loginStore.clearStore;
 
-		// console.log(home.getToken);
-
 		//NEED TO IMPLENT DO NOT CLEAR LOCAL STORED TOKEN WHEN ARRIVING ON LOGIN SCREEN
 		// home.deauthenticateUser();
 		// if(!home.userAuthenticated){
 		// 	this.props.navigation.navigate("Home");
 		// }
 	}
-
 
 	facebookLogin = () => {
 
@@ -46,7 +43,7 @@ class Login extends React.Component<Props, State> {
 		const logIn = async () => {
 
 	  const { type, token, expires, permissions } = await Expo.Facebook.logInWithReadPermissionsAsync('192651401441339', {
-		      permissions: ['public_profile'],
+		      permissions: ['public_profile', 'email'],
 		    });
 
 
@@ -62,11 +59,14 @@ class Login extends React.Component<Props, State> {
 
 				const { picture, name, id, email } = await response.json();
 
+				console.log(email);
+
 				home.setEmail(email);
 				home.setName(name);
 				home.setProfileImage(picture.data.url);
 				home.toggleAuthenticateStatus();
 				home.authenticateUser(token);
+				home.fbAuthentication();
 
 		    Alert.alert(
 		      'Logged in!',
@@ -79,7 +79,8 @@ class Login extends React.Component<Props, State> {
 
 				this.props.navigation.navigate("Home");
 
-				home.fbAuthentication()
+
+
 				// console.log(user.email);
 
 				// loginStore.authenticateFB(token, user)

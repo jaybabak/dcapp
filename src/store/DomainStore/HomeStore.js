@@ -25,6 +25,7 @@ class HomeStore {
 
   @action
   setEmail(email) {
+    console.log(email);
     this.email = email;
   }
 
@@ -54,9 +55,8 @@ class HomeStore {
 
   }
 
-
   @action
-  fbAuthentication = () => {
+  fbAuthentication(){
 
     /* PARAMETERS
     **
@@ -64,9 +64,9 @@ class HomeStore {
     * homeStore -> passing in a property of the HomeStore so that we can set the name etc.. globally
     */
 
-    console.log(this.email);
-    console.log(this.token);
-    console.log(this.name);
+    // console.log(this.email);
+    // console.log(this.token);
+    // console.log(this.name);
 
     const userEmail = encodeURIComponent(this.email);
     const userName = encodeURIComponent(this.name);
@@ -101,21 +101,10 @@ class HomeStore {
 
         console.log(data);
 
-        // homeStore.setName(data.user.name);
-        // homeStore.authenticateUser(data.token);
+        this.setName = data.user[0].name;
+        this.setEmail = data.user[0].email;
+        this.authenticateUser(data.user[0].facebook.token);
         // homeStore.toggleAuthenticateStatus();
-
-        Alert.alert(
-          'Logged in successfully!',
-          'Welcome BALABALBNALA',
-          [
-            {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-            {text: 'OK', onPress: () => {
-              // console.log(text.target);
-            }},
-          ],
-            { cancelable: false }
-        )
 
     }else{
       console.log('HAHAHA FAIL AUTH');
