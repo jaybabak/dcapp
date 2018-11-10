@@ -19,7 +19,7 @@ class Login extends React.Component<Props, State> {
 
 
 
-	componentDidMount(){
+	componentDidMount = () =>{
 
 		const home = this.props.mainStore;
 		const loginStore = this.props.loginForm;
@@ -37,7 +37,7 @@ class Login extends React.Component<Props, State> {
 	facebookLogin = () => {
 
 		const home = this.props.mainStore;
-		const loginStore = this.props.mainStore;
+		// const loginStore = this.props.mainStore;
 		var user = {};
 
 		const logIn = async () => {
@@ -52,26 +52,38 @@ class Login extends React.Component<Props, State> {
 
 
 
+				try {
+					const response = await fetch(
+			      `https://graph.facebook.com/me?access_token=${token}&fields=name,id,email,picture`);
 
+					const { picture, name, id, email } = await response.json();
+
+
+					home.setEmail(email);
+					home.setName(name);
+					home.setProfileImage(picture.data.url);
+					home.toggleAuthenticateStatus();
+					home.authenticateUser(token);
+					home.fbAuthentication();
+
+					Alert.alert(
+						'Logged in!',
+						`Hi ${name}!`,
+					);
+
+
+
+				}catch (error) {
+					console.log(error);
+				}
 		    // Get the user's name using Facebook's Graph API
-		    const response = await fetch(
-		      `https://graph.facebook.com/me?access_token=${token}&fields=name,id,email,picture`);
 
-				const { picture, name, id, email } = await response.json();
 
-				console.log(email);
 
-				home.setEmail(email);
-				home.setName(name);
-				home.setProfileImage(picture.data.url);
-				home.toggleAuthenticateStatus();
-				home.authenticateUser(token);
-				home.fbAuthentication();
 
-		    Alert.alert(
-		      'Logged in!',
-		      `Hi ${name}!`,
-		    );
+				// console.log(email);
+
+
 
 				// const
 				//wait for response if new user take them to consumer sign up screen
@@ -141,10 +153,6 @@ class Login extends React.Component<Props, State> {
 			} catch(e) {
 				return {error: true};
 			}
-		}
-
-		if(!home.userAuthenticated){
-			this.props.navigation.navigate("Home");
 		}
 
 		logInGoogle();

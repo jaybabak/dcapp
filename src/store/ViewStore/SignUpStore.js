@@ -252,22 +252,9 @@ class SignUpStore {
   @action
   clearStore() {
     this.email = "";
-    this.isValid = false;
     this.name = "";
     this.lastName = "";
     this.password = "";
-
-    this.emailValid = "";
-    this.nameValid = "";
-    this.lastNameValid = "";
-    this.passwordValid = "";
-    this.addressNameValid = false;
-    this.addressTypeValid = false;
-    this.streetValid = false;
-    this.buildingNameValid = false;
-    this.floorValid = false;
-    this.additionalDirectionsValid = false;
-    this.mobileNumberValid = false;
     this.addressName = '';
     this.addressType = '';
     this.street = '';
@@ -278,8 +265,22 @@ class SignUpStore {
     this.lat = '';
     this.long = '';
     this.preferredAddress = true;
+
+    this.emailValid = false;
+    this.nameValid = false;
+    this.lastNameValid = false;
+    this.passwordValid = false;
+    this.addressNameValid = false;
+    this.addressTypeValid = false;
+    this.streetValid = false;
+    this.buildingNameValid = false;
+    this.floorValid = false;
+    this.additionalDirectionsValid = false;
+    this.mobileNumberValid = false;
+
     this.errors = {};
     this.signUpStep1Complete = false;
+    this.isValid = false;
   }
 
   @computed get validateForm(){

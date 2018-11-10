@@ -33,10 +33,10 @@ class ConsumerSignUpStep2 extends React.Component<Props, State> {
 		const signers = this.props.signUpStore;
 		const home = this.props.mainStore;
 
-		if(signers.validateForm == true){
-
-			return;
-		}
+		// if(signers.validateForm == true){
+		//
+		// 	return;
+		// }
 
 		signers.submitForm(this.props.navigation);
 	}
