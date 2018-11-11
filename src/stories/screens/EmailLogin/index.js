@@ -99,15 +99,11 @@ class EmailLogin extends React.Component<Props, State> {
 
 
 							<Modal
-
 								animationType="slide"
 								transparent={false}
 								visible={this.state.modalVisible}
-								onRequestClose={() => {
-									Alert.alert('Modal has been closed.');
-								}}>
+								>
 
-									 {/* <Header /> */}
 									 <Content>
 										 <Card style={styles.mainCard}>
 											 <CardItem header>
@@ -134,12 +130,8 @@ class EmailLogin extends React.Component<Props, State> {
 
 													// console.log(loginStore.forgotEmailError);
 													if(loginStore.forgotEmailField == ''){
-														Toast.show({
-															text: "Enter a valid email",
-															duration: 4000,
-															position: "bottom",
-															textStyle: { textAlign: "center" },
-														});
+
+															Alert.alert('Enter a valid email address pleaes.');
 
 													}else{
 														this.setState({
