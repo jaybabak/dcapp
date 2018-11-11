@@ -29,15 +29,15 @@ export default class Sidebar extends React.Component<Props, State> {
 		const routes = [
 			{
 				route: "Home",
-				caption: "Home",
+				caption: "Dashboard",
 			},
 			{
-				route: "BlankPage",
-				caption: "Who We Are",
+				route: "MyListings",
+				caption: home.authenticated ? "Create My First Listing" : "Become a Merchant",
 			},
 			{
 				route: "Login",
-				caption: home.authenticated ? "Logout" : "Register / Login",
+				caption: home.authenticated ? "Logout" : "Register | Sign-in",
 			},
 		];
 

@@ -6,14 +6,14 @@ import Login from "./container/LoginContainer";
 import EmailLoginContainer from "./container/EmailLoginContainer";
 import Home from "./container/HomeContainer";
 import SignUpContainer from "./container/SignUpContainer";
-import BlankPage from "./container/BlankPageContainer";
+import MyListings from "./container/MyListingsContainer";
 import Sidebar from "./container/SidebarContainer";
 import ConsumerSignUpStep2 from "./stories/screens/SignUp/consumerSignUpStep2.js";
 
 const Drawer = DrawerNavigator(
 	{
 		Home: { screen: Home },
-		BlankPage: { screen: BlankPage },
+		MyListings: { screen: MyListings },
 	},
 	{
 		initialRouteName: "Home",
