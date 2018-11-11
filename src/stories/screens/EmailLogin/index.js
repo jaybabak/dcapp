@@ -104,7 +104,7 @@ class EmailLogin extends React.Component<Props, State> {
 								visible={this.state.modalVisible}
 								>
 
-									 <Content>
+									 <Content style={{ marginTop: 110 }}>
 										 <Card style={styles.mainCard}>
 											 <CardItem header>
 												 <Text>Reset Your Password!</Text>
