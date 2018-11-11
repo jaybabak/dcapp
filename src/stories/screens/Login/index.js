@@ -58,7 +58,6 @@ class Login extends React.Component<Props, State> {
 
 					const { picture, name, id, email } = await response.json();
 
-
 					home.setEmail(email);
 					home.setName(name);
 					home.setProfileImage(picture.data.url);
@@ -71,38 +70,16 @@ class Login extends React.Component<Props, State> {
 						`Hi ${name}!`,
 					);
 
-
-
 				}catch (error) {
 					console.log(error);
 				}
 		    // Get the user's name using Facebook's Graph API
-
-
-
-
-				// console.log(email);
-
-
 
 				// const
 				//wait for response if new user take them to consumer sign up screen
 				//if existing user take them to the homepage
 
 				this.props.navigation.navigate("Home");
-
-
-
-				// console.log(user.email);
-
-				// loginStore.authenticateFB(token, user)
-
-				//use ID to create a userObject for facebook user with ID and accesstoken fields
-				// If authenticated user and id + token are recieved create a POST request to backend to
-				// to see if User ID exists already in the user table if not create the user and store the id and accesstoken
-				// if user already exists then store the new access token
-				// console.log(email);
-
 
 
 		  }else {
@@ -132,7 +109,7 @@ class Login extends React.Component<Props, State> {
 				});
 
 				if (result.type === 'success') {
-					console.log(result);
+					// console.log(result);
 					// "108562474867511286438"
 					home.setName(result.user.name);
 					home.setProfileImage(result.user.photoUrl);

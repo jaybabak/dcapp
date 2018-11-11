@@ -8,9 +8,12 @@ class HomeStore {
   @observable items = [];
   @observable name = '@user';
   @observable email = '';
+  @observable forgotEmailField = '';
   @observable token = '';
   @observable avatar = 'http://phot0x.com/sites/default/files/styles/promo_image/public/2018-08/2Artboard%201%20copy%204%40lmood.png?itok=U_BVx-0d';
   @observable authenticated = false;
+  @observable user = {};
+
 
   @action
   fetchItems(data) {
@@ -25,7 +28,7 @@ class HomeStore {
 
   @action
   setEmail(email) {
-    console.log(email);
+    // console.log(email);
     this.email = email;
   }
 
@@ -101,9 +104,12 @@ class HomeStore {
 
         console.log(data);
 
-        this.setName = data.user[0].name;
-        this.setEmail = data.user[0].email;
-        this.authenticateUser(data.user[0].facebook.token);
+        this.user = data.user[0];
+        console.log(this.user);
+
+        this.setName = this.user.name;
+        this.setEmail = this.user.email;
+        this.authenticateUser(this.user.facebook.token);
         // homeStore.toggleAuthenticateStatus();
 
     }else{
@@ -119,6 +125,75 @@ class HomeStore {
     }
     }) // JSON from `response.json()` call
     .catch(error => console.log('ERROR'));
+  }
+
+  @action
+  getSecretStuff(){
+
+    console.log(this.token);
+    const accessToken = this.token;
+    const formData = `&access_token=${accessToken}`;
+
+    const postData = (url = ``, data = {}) => {
+      // Default options are marked with *
+      return fetch(url, {
+            method: "POST", // *GET, POST, PUT, DELETE, etc.
+            // mode: "cors", // no-cors, cors, *same-origin
+            // cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+            // credentials: "same-origin", // include, same-origin, *omit
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+              // "Content-Type": "application/x-www-form-urlencoded",
+            },
+            // redirect: "follow", // manual, *follow, error
+            // referrer: "no-referrer", // no-referrer, *client
+            body: formData, // body data type must match "Content-Type" header
+        })
+      .then(response => response.json()) // parses response to JSON
+      .catch(error => console.log(`Fetch Error =\n`, error));
+    };
+
+    // postData(`https://dcapp-backend.herokuapp.com/auth/login`, '') ///staging domain backend
+    postData(`http://localhost:5000/api/dashboard`, '')  //local dev backend
+    .then((data) => {
+
+      console.log(data);
+
+      // if(data.success == true){
+      //
+      //   console.log(data);
+      //
+      //
+      //   }else{
+      //     console.log('-------');
+      //
+      //   }
+    }) // JSON from `response.json()` call
+    .catch(error => console.log('ERROR'));
+
+    //
+    //
+    // const xhr = new XMLHttpRequest();
+    // xhr.open('GET', '/api/dashboard');
+    // // xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    // // set the authorization HTTP header
+    // xhr.setRequestHeader('Authorization', `bearer ${this.token}`);
+    // xhr.responseType = 'json';
+    // xhr.addEventListener('load', () => {
+    //   if (xhr.status === 200) {
+    //
+    //     console.log(xhr.response);
+    //     // this.setState({
+    //     //   secretData: xhr.response.message,
+    //     //   user: xhr.response.user,
+    //     // });
+    //     resolve(xhr.response);
+    //   }
+    // });
+    // xhr.send();
+
+
+
   }
 
   @action

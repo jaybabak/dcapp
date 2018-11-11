@@ -35,7 +35,7 @@ class Dashboard extends React.Component<Props, State> {
     // console.log
     const home = this.props.mainStore;
 
-		// console.log(home.userAuthenticated);
+    home.getSecretStuff()
 
   }
 

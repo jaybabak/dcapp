@@ -47,6 +47,18 @@ const styles: any = StyleSheet.create({
 		borderRadius: 5,
 		backgroundColor: '#102D64'
 	},
-
+	mainCard: {
+		// fontSize: 18,
+		marginTop: 25,
+		marginLeft: 15,
+		marginRight: 15,
+		paddingBottom: 25
+	},
+	cardBtn: {
+		marginTop: 12,
+		borderRadius: 25,
+		marginLeft: 10,
+		marginRight: 10
+	}
 });
 export default styles;

@@ -8,6 +8,8 @@ import Auth from '../../modules/Auth';
 class LoginStore {
 
   @observable email = "";
+  @observable forgotEmailField = '';
+  @observable forgotEmailError = '';
   @observable password = "";
   @observable isValid = false;
   @observable emailError = "";
@@ -34,12 +36,28 @@ class LoginStore {
   }
 
   @action
+  setForgotEmailField(email) {
+    console.log(email);
+    this.forgotEmailField = email;
+  }
+
+
+  @action
   validateEmail() {
     const emailPatter = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
     const required = this.email ? undefined : "Required";
     this.emailError = required
       ? required
       : emailPatter.test(this.email) ? undefined : "Invalid email address";
+  }
+
+  @action
+  validateForgotEmail() {
+    const emailPatter = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
+    const required = this.forgotEmailField ? undefined : "Required";
+    this.forgotEmailError = required
+      ? required
+      : emailPatter.test(this.forgotEmailField) ? undefined : "Invalid email address";
   }
 
   @action

@@ -18,6 +18,7 @@ export interface State {}
 export default class EmailLoginContainer extends React.Component<Props, State> {
 	emailInput: any;
 	pwdinput: any;
+	emailForgotInput: any;
 	login() {
 		const loginStore = this.props.loginForm;
 		const home = this.props.mainStore;
@@ -58,11 +59,27 @@ export default class EmailLoginContainer extends React.Component<Props, State> {
 			</Form>
 		);
 
+		const ForgotPassword = (
+			<Form>
+				<Item error={form.emailError ? true : false}>
+					<Icon active name="person" />
+					<Input
+						placeholder="Email"
+						keyboardType="email-address"
+						ref={c => (this.emailForgotInput = c)}
+						value={form.forgotEmailField}
+						onBlur={() => form.validateForgotEmail()}
+						onChangeText={e => form.setForgotEmailField(e)}
+					/>
+				</Item>
+			</Form>
+		);
+
 		//****************************
 		//Created form field in side the login container file
 		// Imports Login component (../stories/screens/Login/index.js) and passes the fields to the login component as prop for "loginForm"
 		// onLogin business logic inside function (this file) called login() <--validation determines if valid
 
-		return <EmailLogin navigation={this.props.navigation} loginForm={Fields} onLogin={() => this.login()} />;
+		return <EmailLogin navigation={this.props.navigation} loginFormFields={Fields} onLogin={() => this.login()} forgotPasswordForm={ForgotPassword} />;
 	}
 }
