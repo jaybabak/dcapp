@@ -18,9 +18,7 @@ class Counter extends React.Component<Props, State> {
 			<View>
 				{this.props.countersStore}
 
-				<Button style={styles.button} block onPress={() => this.props.computer()}>
-					<Text>CLICK ME!</Text>
-				</Button>
+				<Button bordered onPress={this.nextPage} style={styles.submitBtn} color="red" block ><Text>Continue...</Text></Button>
 			</View>
 		);
 	}

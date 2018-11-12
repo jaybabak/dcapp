@@ -33,7 +33,8 @@ export default class Sidebar extends React.Component<Props, State> {
 			},
 			{
 				route: "MyListings",
-				caption: home.authenticated ? "Create My First Listing" : "Become a Merchant",
+				// caption: home.authenticated ? "Create My First Listing" : "Become a Merchant",
+				caption: !home.authenticated ? "Create My First Listing" : "Become a Merchant",
 			},
 			{
 				route: "Login",

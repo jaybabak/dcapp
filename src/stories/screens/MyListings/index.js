@@ -1,6 +1,6 @@
 import * as React from "react";
 import { View, ActivityIndicator, Modal } from "react-native";
-import { Container, Header, Card, CardItem, Footer, Title, Content, Text, Button, Icon, Left, Right, Body, Toast } from "native-base";
+import { Container, Header, Card, CardItem, Footer, Form, Label, Title, Content, Item, Input, Text, Button, Icon, Left, Right, Body, Toast } from "native-base";
 import { observer, inject } from "mobx-react/native";
 
 
@@ -19,6 +19,8 @@ export interface State {}
 class MyListings extends React.Component<Props, State> {
 	state: {
 		isReady: boolean,
+		businessNameInput: string,
+		businessAddressInput: string,
 	};
 	constructor() {
 		super();
@@ -28,16 +30,25 @@ class MyListings extends React.Component<Props, State> {
 		};
 	}
 
-	doSomething() {
+	submitListing() {
 		const countz = this.props.countersStore;
-		console.log(countz.getTotal);
-				Toast.show({
-					 text: 'Counter @: ' + countz.getTotal,
-					 buttonText: "Ok"
-				 })
+
+		Toast.show({
+			 text: 'Form not completed!',
+			 buttonText: "Ok"
+		 })
 
 	}
 
+	toggleHelp = () => {
+
+		Toast.show({
+			text: "Some Helpful Message About The Form Field With Error",
+			duration: 4000,
+			position: "bottom",
+			textStyle: { textAlign: "center" },
+		});
+	}
 
 	componentWillMount(){
 
@@ -55,7 +66,7 @@ class MyListings extends React.Component<Props, State> {
 
 	componentDidMount(){
 		let that = this;
-		setTimeout(function(){that.setState({isReady: true})}, 1000);
+		setTimeout(function(){that.setState({isReady: true})}, 700);
 	}
 
 	render() {
@@ -63,13 +74,125 @@ class MyListings extends React.Component<Props, State> {
 		const home = this.props.mainStore;
 
 		const param = this.props.navigation.state.params;
-		const countz = this.props.countersStore;
 
 		const CountBtn = (
 			<View>
-			{/* <Text>Total Number Of Count: {countz.getTotal()}</Text> */}
-			<Button  style={styles.button} block onPress={() => countz.increase()} color="red" rounded><Text>Increase +</Text></Button>
-			<Button style={styles.button} padder block onPress={() => countz.decrease()} rounded><Text>Decrease -</Text></Button>
+			<Text style={{fontWeight: 'bold', marginTop: 12}}>We're glad you decided to join us!</Text>
+			<Text style={{marginTop: 12, marginBottom: 12}}>Your store listing will be in pending until approval. Once approved, other will be able to see your listing!</Text>
+
+			<Form>
+				<Item inlineLabel last rounded
+					error={countersStore.businessNameValid}
+					style={styles.textWrapper}
+					>
+					<Label>Business Name:</Label>
+					<Input
+						style={styles.textField}
+						onChangeText={event => countersStore.businesNameChange(event)}
+						value={countersStore.businessName}
+						// onBlur={true}
+					/>
+					<Button style={styles.inlineIconForField} onPress={this.toggleHelp}>
+						<Icon style={styles.helpIcon} size={40} name='help' />
+					</Button>
+				</Item>
+				<Item inlineLabel last rounded
+					error={countersStore.businessAddressValid}
+					style={styles.textWrapper}
+					>
+					<Label>Business Address:</Label>
+					<Input
+						style={styles.textField}
+						onChangeText={event => countersStore.businesAddressChange(event)}
+						value={countersStore.businessAddress}
+						// onBlur={true}
+					/>
+					<Button style={styles.inlineIconForField} onPress={this.toggleHelp}>
+						<Icon style={styles.helpIcon} size={40} name='help' />
+					</Button>
+				</Item>
+				<Item inlineLabel last rounded
+					error={countersStore.businessAddress2Valid}
+					style={styles.textWrapper}
+					>
+					<Label>(Additional Directions)</Label>
+					<Input
+						style={styles.textField}
+						onChangeText={event => countersStore.businesAddress2Change(event)}
+						value={countersStore.businessAddress2}
+						// onBlur={countersStore.submitForm}
+					/>
+					<Button style={styles.inlineIconForField} onPress={this.toggleHelp}>
+						<Icon style={styles.helpIcon} size={40} name='help' />
+					</Button>
+				</Item>
+
+				<Item inlineLabel last rounded
+					error={countersStore.businessPhoneValid}
+					style={styles.textWrapper}
+					>
+					<Label>Phone Number:</Label>
+					<Input
+						style={styles.textField}
+						onChangeText={event => countersStore.businessPhoneChange(event)}
+						value={countersStore.businessPhone}
+						// onBlur={countersStore.submitForm}
+					/>
+					<Button style={styles.inlineIconForField} onPress={this.toggleHelp}>
+						<Icon style={styles.helpIcon} size={40} name='help' />
+					</Button>
+				</Item>
+
+				<Item inlineLabel last rounded
+					error={countersStore.businessFeeValid}
+					style={styles.textWrapper}
+					>
+					<Label>Service Fee:</Label>
+					<Input
+						style={styles.textField}
+						onChangeText={event => countersStore.businessFeeChange(event)}
+						value={countersStore.businessFee}
+						// onBlur={countersStore.submitForm}
+					/>
+					<Button style={styles.inlineIconForField} onPress={this.toggleHelp}>
+						<Icon style={styles.helpIcon} size={40} name='help' />
+					</Button>
+				</Item>
+
+				<Item inlineLabel last rounded
+					error={countersStore.businessEmailValid}
+					style={styles.textWrapper}
+					>
+					<Label>Email Address:</Label>
+					<Input
+						style={styles.textField}
+						onChangeText={event => countersStore.businessEmailChange(event)}
+						value={countersStore.businessEmail}
+						// onBlur={countersStore.submitForm}
+					/>
+					<Button style={styles.inlineIconForField} onPress={this.toggleHelp}>
+						<Icon style={styles.helpIcon} size={40} name='help' />
+					</Button>
+				</Item>
+
+				<Item inlineLabel last rounded
+					error={countersStore.minimumOrderValid}
+					style={styles.textWrapper}
+					>
+					<Label>Minimum Order Quantity:</Label>
+					<Input
+						style={styles.textField}
+						onChangeText={event => countersStore.minimumOrderChange(event)}
+						value={countersStore.minimumOrder}
+						// onBlur={countersStore.submitForm}
+					/>
+					<Button style={styles.inlineIconForField} onPress={this.toggleHelp}>
+						<Icon style={styles.helpIcon} size={40} name='help' />
+					</Button>
+				</Item>
+			</Form>
+
+
 			</View>
 		);
 
@@ -84,7 +207,8 @@ class MyListings extends React.Component<Props, State> {
 		if(this.state.isReady){
 
 
-			if(!home.authenticated){
+			// if(!home.authenticated){
+			if(home.authenticated){
 				return (
 					<Container style={styles.container}>
 						<Header>
@@ -201,9 +325,9 @@ class MyListings extends React.Component<Props, State> {
 							<Right />
 						</Header>
 
-						<Content padder>
+						<Content style={styles.contentWrapper} padder>
 
-							<Counter countersStore={CountBtn} computer={() => this.doSomething()} />
+							<Counter countersStore={CountBtn} computer={() => this.submitListing()} />
 
 						</Content>
 
