@@ -10,7 +10,19 @@ export interface Props {
 }
 export interface State {}
 
-class Counter extends React.Component<Props, State> {
+class CreateListing extends React.Component<Props, State> {
+
+	nextPage = () => {
+
+		// console.log();
+		// this.props.navigation.navigate("CreateMyListingStep2");
+			const countersStore = this.props.countersStore;
+			// signers.submitForm(this.props.navigation);
+			this.props.navigation.navigate("CreateMyListingStep2");
+
+
+	}
+
 
 	render() {
 
@@ -24,4 +36,4 @@ class Counter extends React.Component<Props, State> {
 	}
 }
 
-export default Counter;
+export default CreateListing;

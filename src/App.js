@@ -9,6 +9,7 @@ import SignUpContainer from "./container/SignUpContainer";
 import MyListings from "./container/MyListingsContainer";
 import Sidebar from "./container/SidebarContainer";
 import ConsumerSignUpStep2 from "./stories/screens/SignUp/consumerSignUpStep2.js";
+import CreateListingStep2 from "./stories/screens/MyListings/createListingStep2.js";
 
 const Drawer = DrawerNavigator(
 	{
@@ -27,6 +28,7 @@ const App = StackNavigator(
 		EmailLogin: { screen: EmailLoginContainer },
 		SignUp: { screen: SignUpContainer },
 		ConsumerSignUpStep2: { screen: ConsumerSignUpStep2 },
+		CreateMyListingStep2: { screen: CreateListingStep2 },
 		Drawer: { screen: Drawer },
 	},
 	{

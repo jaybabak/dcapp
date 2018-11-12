@@ -8,7 +8,36 @@ class CountersStore {
   @observable businessPhone = '';
   @observable businessEmail = '';
   @observable minimumOrder = '';
-  @observable businessHours = {};
+  @observable businessHours = {
+    monday: {
+      open: '',
+      close: '',
+    },
+    tuesday: {
+      open: '',
+      close: '',
+    },
+    wednesday: {
+      open: '',
+      close: '',
+    },
+    thursday: {
+      open: '',
+      close: '',
+    },
+    friday: {
+      open: '',
+      close: '',
+    },
+    saturday: {
+      open: '',
+      close: '',
+    },
+    sunday: {
+      open: '',
+      close: '',
+    },
+  };
   @observable status = false;
 
   @observable businessNameValid = false;
@@ -57,9 +86,18 @@ class CountersStore {
   }
 
   @action
-  businessHoursChange = (event) => {
-    this.businessHours = event;
+  businessHoursChange = (event, type, time) => {
+    // console.log(event);
+    console.log(type);
+    console.log(this);
+    this.businessHours[type][time] = event;
   }
+
+  @action
+  submitForm() {
+    console.log('Submitting form.....')
+  }
+
 
   @action
   increase() {

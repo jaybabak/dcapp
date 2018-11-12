@@ -4,7 +4,8 @@ import { Container, Header, Card, CardItem, Footer, Form, Label, Title, Content,
 import { observer, inject } from "mobx-react/native";
 
 
-import Counter from "./counter";
+// import Counter from "./counter";
+import Counter from "./createListing";
 
 import styles from "./styles";
 export interface Props {
@@ -327,7 +328,7 @@ class MyListings extends React.Component<Props, State> {
 
 						<Content style={styles.contentWrapper} padder>
 
-							<Counter countersStore={CountBtn} computer={() => this.submitListing()} />
+							<Counter navigation={this.props.navigation} countersStore={CountBtn} computer={() => this.submitListing()} />
 
 						</Content>
 
