@@ -130,7 +130,7 @@ class SignUpStore {
     const mobileNumber = encodeURIComponent(this.mobileNumber);
     const lat = encodeURIComponent(this.lat);
     const long = encodeURIComponent(this.long);
-    const preferredAddress = encodeURIComponent(this.preferredAddress);;
+    const preferredAddress = encodeURIComponent(this.preferredAddress);
 
 
     const formData = `name=${userName}&lastName=${userLastName}&email=${userEmail}&password=${userPassword}&addressName=${addressName}&addressType=${addressType}&street=${street}&buildingName=${buildingName}&floor=${floor}&additionalDirections=${additionalDirections}&mobileNumber=${mobileNumber}&lat=${lat}&long=${long}&preferredAddress=${preferredAddress}`;

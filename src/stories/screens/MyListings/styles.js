@@ -83,10 +83,15 @@ const styles: any = StyleSheet.create({
 		borderRadius: 25
 	},
 	label: {
-		marginTop: 23,
+		marginTop: 10,
+		marginLeft: 15,
+		color: '#666462'
 	},
 	contentWrapper: {
 
+	},
+	textArea: {
+		borderRadius: 15
 	}
 
 });

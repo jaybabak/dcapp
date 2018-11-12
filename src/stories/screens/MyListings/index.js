@@ -1,6 +1,6 @@
 import * as React from "react";
 import { View, ActivityIndicator, Modal } from "react-native";
-import { Container, Header, Card, CardItem, Footer, Form, Label, Title, Content, Item, Input, Text, Button, Icon, Left, Right, Body, Toast } from "native-base";
+import { Container, Header, Card, CardItem, Footer, Form, Label, Title, Content, Item, Input, Textarea, Text, Button, Icon, Left, Right, Body, Toast } from "native-base";
 import { observer, inject } from "mobx-react/native";
 
 
@@ -97,6 +97,20 @@ class MyListings extends React.Component<Props, State> {
 						<Icon style={styles.helpIcon} size={40} name='help' />
 					</Button>
 				</Item>
+
+				{/* <Item inlineLabel last rounded
+					error={countersStore.businessDescriptionValid}
+					style={styles.textWrapper}
+					> */}
+					<Label style={styles.label}>Business Description:</Label>
+					<Textarea rowSpan={5} bordered
+						style={styles.textArea}
+						onChangeText={event => countersStore.businesDescriptionChange(event)}
+						value={countersStore.businessDescription}
+						placeholder="A small description about your business..." />
+
+				{/* </Item> */}
+
 				<Item inlineLabel last rounded
 					error={countersStore.businessAddressValid}
 					style={styles.textWrapper}
@@ -209,7 +223,7 @@ class MyListings extends React.Component<Props, State> {
 
 
 			// if(!home.authenticated){
-			if(home.authenticated){
+			if(!home.authenticated){
 				return (
 					<Container style={styles.container}>
 						<Header>
