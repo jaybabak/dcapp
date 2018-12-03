@@ -122,8 +122,8 @@ class LoginStore {
       .catch(error => console.log(`Fetch Error =\n`, error));
     };
 
-    // postData(`https://dcapp-backend.herokuapp.com/auth/login`, '') ///staging domain backend
-    postData(`http://localhost:5000/auth/login`, '')  //local dev backend
+    postData(`https://dcapp-backend.herokuapp.com/auth/login`, '') ///staging domain backend
+    // postData(`http://localhost:5000/auth/login`, '')  //local dev backend
     .then((data) => {
       // console.log(data);
 

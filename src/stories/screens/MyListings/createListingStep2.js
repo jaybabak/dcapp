@@ -18,8 +18,9 @@ class CreateListingStep2 extends React.Component<Props, State> {
 
 		const home = this.props.mainStore;
 		const countersStore = this.props.countersStore;
+		const navigation = this.props.navigation;
 
-		countersStore.submitForm(home);
+		countersStore.submitForm(home, navigation);
 
 	}
 

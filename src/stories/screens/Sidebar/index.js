@@ -37,6 +37,10 @@ export default class Sidebar extends React.Component<Props, State> {
 				caption: home.authenticated ? "Create My First Listing" : "Become a Merchant",
 			},
 			{
+				route: "AdminPendingStoresView",
+				caption: "View Stores Pending Approval",
+			},
+			{
 				route: "Login",
 				caption: home.authenticated ? "Logout" : "Register | Sign-in",
 			},

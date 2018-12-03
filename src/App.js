@@ -5,6 +5,7 @@ import { Root } from "native-base";
 import Login from "./container/LoginContainer";
 import EmailLoginContainer from "./container/EmailLoginContainer";
 import Home from "./container/HomeContainer";
+import PendingStoresContainer from "./container/PendingStoresContainer";
 import SignUpContainer from "./container/SignUpContainer";
 import MyListings from "./container/MyListingsContainer";
 import Sidebar from "./container/SidebarContainer";
@@ -15,6 +16,7 @@ const Drawer = DrawerNavigator(
 	{
 		Home: { screen: Home },
 		MyListings: { screen: MyListings },
+		AdminPendingStoresView: { screen: PendingStoresContainer },
 	},
 	{
 		initialRouteName: "Home",

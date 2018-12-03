@@ -1,4 +1,5 @@
 import MainStore from "../store/DomainStore/HomeStore";
+import AdminStore from "../store/DomainStore/AdminStore";
 import LoginStore from "../store/ViewStore/LoginViewStore";
 import CountersStore from "../store/ViewStore/CountersStore";
 import SignUpStore from "../store/ViewStore/SignUpStore";
@@ -8,11 +9,13 @@ export default function() {
 	const loginForm = new LoginStore();
 	const countersStore = new CountersStore();
 	const signUpStore = new SignUpStore();
+	const adminStore = new AdminStore();
 
 	return {
 		loginForm,
 		mainStore,
 		countersStore,
 		signUpStore,
+		adminStore,
 	};
 }

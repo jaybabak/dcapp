@@ -1,4 +1,5 @@
 import { observable, action, computed, autorun } from "mobx";
+import { View, Alert, TextInput } from 'react-native';
 
 class CountersStore {
   @observable businessName = '';
@@ -50,6 +51,7 @@ class CountersStore {
   @observable businessEmailValid = false;
   @observable minimumOrderValid = false;
   @observable businessHoursValid = false;
+  @observable signUpStep1Complete = false;
 
 
   @action
@@ -98,7 +100,7 @@ class CountersStore {
   }
 
   @action
-  submitForm(mainStore) {
+  submitForm(mainStore, navi) {
 
     const businessName = encodeURIComponent(this.businessName);
     const businessDescription = encodeURIComponent(this.businessDescription);
@@ -133,10 +135,47 @@ class CountersStore {
     };
 
 
-    postData(`http://localhost:5000/api/add/store`, '')
+    // postData(`http://localhost:5000/api/add/store`, '') //local dev
+    postData(`https://dcapp-backend.herokuapp.com/api/add/store`, '') // Dev back-end endpoint
     .then((data) => {
 
       console.log(data);
+
+      if(data.success == true){
+        this.isValid = true;
+        this.signUpStep1Complete = true;
+        // this.clearStore();
+        navi.navigate("Home");
+        // this.isValid = false;
+      }else{
+
+        Alert.alert(
+        "Oops! Something Isn't Right",
+        'Pleaes check the form and try again',
+        [
+          {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+          {text: 'OK', onPress: () => {
+
+          }},
+        ],
+          { cancelable: false }
+        )
+
+        this.businessNameValid = data.errors.nameInvalid;
+        this.businessDescriptionValid = data.errors.descriptionInvalid;
+        this.businessAddressValid = data.errors.addressInvalid;
+        this.businessAddress2Valid = data.errors.address2Invalid;
+        this.businessFeeValid = data.errors.serviceFeeInvalid;
+        this.businessPhoneValid = data.errors.phoneNumberInvalid;
+        this.businessEmailValid = data.errors.businessEmailInvalid;
+        this.minimumOrderValid = data.errors.minimumOrderInvalid;
+        // this.signUpStep1Complete = data.errors.step1Valid;
+
+      }
+
+
+      // this.businessHoursValid = data.errors.;
+
 
     })
     .catch(error => console.error(error));

@@ -53,17 +53,9 @@ class MyListings extends React.Component<Props, State> {
 
 	componentWillMount(){
 
-		// setTimeout(() => {
-		//
-		// 	// this.setState({
-		// 	// 	isReady: true;
-		// 	// });
-		//
-		// }), 3000);
-
-
 
 	}
+
 
 	componentDidMount(){
 		let that = this;
