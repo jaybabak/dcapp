@@ -95,8 +95,8 @@ class HomeStore {
       .catch(error => console.log(`Fetch Error =\n`, error));
     };
 
-    postData(`https://dcapp-backend.herokuapp.com/auth/login`, '') ///staging domain backend
-    // postData(`http://localhost:5000/auth/facebook/login`, '')  //local dev backend
+    // postData(`https://dcapp-backend.herokuapp.com/auth/login`, '') ///staging domain backend
+    postData(`http://localhost:5000/auth/facebook/login`, '')  //local dev backend
     .then((data) => {
       // console.log(data);
 
@@ -153,8 +153,8 @@ class HomeStore {
       .catch(error => console.log(`Fetch Error =\n`, error));
     };
 
-    postData(`https://dcapp-backend.herokuapp.com/auth/login`, '') ///staging domain backend
-    // postData(`http://localhost:5000/api/dashboard`, '')  //local dev backend
+    // postData(`https://dcapp-backend.herokuapp.com/auth/login`, '') ///staging domain backend
+    postData(`http://localhost:5000/api/dashboard`, '')  //local dev backend
     .then((data) => {
 
       console.log(data);

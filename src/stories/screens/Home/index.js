@@ -86,51 +86,17 @@ class Home extends React.Component<Props, State> {
         <Content>
           <UserGreeting/>
           { home.authenticated ? (
-            // <ListItem itemDivider>
-            //   <Text>You are now logged in...!</Text>
-            // </ListItem>
-          <Dashboard/>
+            //screen for authenticated users
+            <Dashboard/>
           ) : (
-
             //screen for anonymous users
             <Card style={styles.mainCard}>
-          <CardItem>
-            <Body>
-              <Text style={styles.subtext}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ac felis nec nisl tincidunt aliquam. Donec aliquet nulla nisl, ac lacinia nibh porta ut. Nulla facilisi. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ac felis nec nisl tincidunt aliquam. Donec aliquet nulla nisl, ac lacinia nibh porta ut. Nulla facilisi. </Text>
-            </Body>
-          </CardItem>
-        </Card>
-
-             //^^caused warning check for it
-
-
-            // <List>
-            //   {this.props.list.map((item, userType) => (
-            //     <ListItem
-            //       key={userType}
-            //       onPress={() => {
-            //         const consumer = 0;
-            //         const merchant = 1;
-            //         if(userType == consumer){
-            //           //consumer
-            //           this.props.navigation.navigate("SignUp", {
-            //             title: 'Register!',
-            //             type: 'consumer'
-            //           })
-            //         }else if(userType == merchant){
-            //           //business
-            //           this.props.navigation.navigate("SignUp", {
-            //             title: 'Register!',
-            //             type: 'merchant'
-            //           });
-            //         }
-            //
-            //     }}
-            //     >
-            //       <Text>{item}</Text>
-            //     </ListItem>
-            //   ))}
-            // </List>
+              <CardItem>
+                <Body>
+                  <Text style={styles.subtext}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ac felis nec nisl tincidunt aliquam. Donec aliquet nulla nisl, ac lacinia nibh porta ut. Nulla facilisi. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ac felis nec nisl tincidunt aliquam. Donec aliquet nulla nisl, ac lacinia nibh porta ut. Nulla facilisi. </Text>
+                </Body>
+              </CardItem>
+            </Card>
           )
           }
         </Content>

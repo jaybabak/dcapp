@@ -135,8 +135,8 @@ class CountersStore {
     };
 
 
-    // postData(`http://localhost:5000/api/add/store`, '') //local dev
-    postData(`https://dcapp-backend.herokuapp.com/api/add/store`, '') // Dev back-end endpoint
+    postData(`http://localhost:5000/api/add/store`, '') //local dev
+    // postData(`https://dcapp-backend.herokuapp.com/api/add/store`, '') // Dev back-end endpoint
     .then((data) => {
 
       console.log(data);
