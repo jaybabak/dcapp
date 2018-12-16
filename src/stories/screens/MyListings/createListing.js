@@ -17,20 +17,7 @@ export interface State {}
 class CreateListing extends React.Component<Props, State> {
 
 	nextPage = () => {
-
-		// console.log();
-		// this.props.navigation.navigate("CreateMyListingStep2");
-			// const countersStore = this.props.countersStore;
-			// signers.submitForm(this.props.navigation);
 			this.props.navigation.navigate("CreateMyListingStep2");
-
-			// const signers = this.props.signUpStore;
-			// const home = this.props.mainStore;
-
-
-			// countersStore.submitForm(home, this.props.navigation);
-
-
 	}
 
 

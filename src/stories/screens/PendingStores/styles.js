@@ -43,6 +43,7 @@ const styles: any = StyleSheet.create({
 	},
 	cardBtn: {
 		marginTop: 12,
+		marginBottom: 32,
 		borderRadius: 25,
 		marginLeft: 10,
 		marginRight: 10
@@ -92,6 +93,12 @@ const styles: any = StyleSheet.create({
 	},
 	textArea: {
 		borderRadius: 15
+	},
+	textLabel: {
+		marginTop: 15
+	},
+	radio: {
+		color: '#2CABFB'
 	}
 
 });
